@@ -42,9 +42,9 @@ export class Class {
 
     }
 
-    static async getForum(forumID)
+    static async getClass(classID)
     {
-        return await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, forumID))
+        return await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, classID))
     }
 
     static async getAllStudentClass(studentID)
@@ -63,6 +63,17 @@ export class Class {
     {
         const queryGetAllLecturerClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("lecturerID", "==", doc(BeeDatabase.getDatabase(), "Users", lecturerID)));
         let datas = await getDocs(queryGetAllLecturerClass)
+        let modelList = []
+        datas.forEach((d) => {
+            modelList.push(this.convertToModel(d))
+        })
+        return modelList
+    }
+
+    static async getAllCourseClasses(courseID)
+    {
+        const queryGetAllCourseClasses = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("courseID", "==", doc(BeeDatabase.getDatabase(), "Courses", courseID)));
+        let datas = await getDocs(queryGetAllCourseClasses)
         let modelList = []
         datas.forEach((d) => {
             modelList.push(this.convertToModel(d))

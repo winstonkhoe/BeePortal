@@ -39,8 +39,8 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top">
+   <!-- ======= Header ======= -->
+   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="home.html" class="logo d-flex align-items-center">
@@ -50,31 +50,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
+          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
+          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -99,7 +79,7 @@
 
     <section class="inner-page counts">
       <div class="container" data-aos="fade-up">
-        <form>
+        <!-- <form> -->
             <div class="form-group">
                 <label for="exampleFormControlSelectCourse">Course List</label>
                 <select class="form-control" id="course-select">
@@ -115,19 +95,8 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Class List</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group">
               <label for="exampleFormControlSelect2">Class List</label>
               <select multiple class="form-control" id="class-select">
-                <option >None</option>
               </select>
             </div>
             <div class="form-group ml-4">
@@ -135,9 +104,11 @@
                 <label class="form-check-label" for="defaultCheck1">
                   Private
                 </label>
-              </div>
-            
-          </form>
+            </div>
+            <div class="form-group">
+                <input id="publish-forum" type="submit" value="Publish"> 
+            </div>
+          <!-- </form> -->
         
       </div>
     </section>
@@ -173,14 +144,12 @@
 <script type="module">
     // FP -> Fetch Place
     import { CourseController } from './assets/js/controller/CourseController.js'
-    
+    import { ClassController } from './assets/js/controller/ClassController.js'
+
     let courseSelectFP = document.getElementById('course-select')
-
+    let classSelectFP = document.getElementById('class-select')
     window.onload = async () => {
-        
-        courseSelectFP.addEventListener('change', ()=>{
 
-        })
         let userID = localStorage.getItem('user_id')
         let courseList = await CourseController.getUniqueCourses(userID)
         // console.log(typeof(courseList))
@@ -191,12 +160,29 @@
         //     console.log(course)
         // }
         courseList.forEach((course) => {
-            console.log(course)
             let opt = document.createElement('option');
             opt.value = course.courseID;
             opt.innerHTML = course.name;
             courseSelectFP.appendChild(opt);
         })
+
+        courseSelectFP.addEventListener('change', async () => {
+            let chosenCourseID = courseSelectFP.value
+            if(chosenCourseID != "")
+            {
+                while (classSelectFP.firstChild) {
+                    classSelectFP.firstChild.remove()
+                }
+                let classList = await ClassController.getAllCourseClasses(chosenCourseID)
+                classList.map( c => {
+                    let opt = document.createElement('option');
+                    opt.value = c.classID;
+                    opt.innerHTML = c.classCode;
+                    classSelectFP.appendChild(opt);
+                })
+            }
+        })
+        
     }
   
     

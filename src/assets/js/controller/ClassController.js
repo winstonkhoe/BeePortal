@@ -5,16 +5,24 @@ export class ClassController{
     static async getAllClass(userID)
     {
         let u = await User.getUser(userID)
-        var class_list 
+        var classList 
         if(u.role == 'student')
         {
-            class_list = await Class.getAllStudentClass(u.userID)
+            classList = await Class.getAllStudentClass(u.userID)
         }
         else if(u.role == 'lecturer')
         {
-            class_list = await Class.getAllLecturerClass(u.userID) 
+            classList = await Class.getAllLecturerClass(u.userID) 
         }
 
-        return class_list
+        return classList
     }
+
+    static async getAllCourseClasses(courseID)
+    {
+        let classList = await Class.getAllCourseClasses(courseID)
+        return classList
+    }
+
+
 }
