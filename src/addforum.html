@@ -146,19 +146,15 @@
     import { CourseController } from './assets/js/controller/CourseController.js'
     import { ClassController } from './assets/js/controller/ClassController.js'
 
-    let courseSelectFP = document.getElementById('course-select')
-    let classSelectFP = document.getElementById('class-select')
+    const courseSelectFP = document.getElementById('course-select')
+    const classSelectFP = document.getElementById('class-select')
+    const publishForum = document.getElementById('publish-forum')
+
     window.onload = async () => {
 
         let userID = localStorage.getItem('user_id')
         let courseList = await CourseController.getUniqueCourses(userID)
-        // console.log(typeof(courseList))
-        console.log(courseList)
-        courseList.map(course => course.courseID)
-        // for(let course of courseList)
-        // {
-        //     console.log(course)
-        // }
+
         courseList.forEach((course) => {
             let opt = document.createElement('option');
             opt.value = course.courseID;
@@ -182,6 +178,12 @@
                 })
             }
         })
+
+        publishForum.addEventListener('click', ()=>{
+            
+        })
+
+
         
     }
   
