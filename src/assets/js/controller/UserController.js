@@ -12,4 +12,9 @@ export class UserController {
       });
     }
   }
+
+  static async getUser(userID) {
+    let u = await User.getUser(userID)
+    return u;
+  }
 }

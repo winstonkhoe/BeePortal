@@ -99,42 +99,33 @@
 
     <section class="inner-page counts">
       <div class="container" data-aos="fade-up">
-        <div id="forum-body" class="d-flex flex-row mb-4 align-content-stretch flex-wrap">
-
-          <!-- <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <i class="bi bi-headset" style="color: #15be56;"></i>
-              <div>
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                <h5 id="class-course">Algorithm and Analysis</h5>
-                <p id="class-code">LQ01</p>
-              </div>
-            </div>
+        <div class="d-flex flex-col mt-5 align-content-around">
+          
+          <div class="btn-group-toggle" data-toggle="buttons">
+            <a href="./addforum.html">
+              <label class="btn btn-secondary active">
+                Create Forum
+              </label>
+            </a>
           </div>
 
-          <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <i class="bi bi-headset" style="color: #15be56;"></i>
-              <div>
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                <h5 id="class-course">Bahasa Indonesia</h5>
-                <p id="class-code">LK01</p>
-              </div>
-            </div>
-          </div> -->
-
-          <template id="forum-card-template">
-            <div id="card-container" class="p-5 col-md-4 col-lg-4">
-              <div class="count-box hov-pointer">
-                <div>
-                  <h5 class="font-weight-bold" id="class-course"></h5>
-                  <p id="class-code"></p>
+          <div id="forum-body" class="d-flex flex-row mb-4 align-content-stretch flex-wrap">
+          
+            <template id="forum-card-template">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 id="forum-title" class="card-title">Card title</h5>
+                  <h6 id="forum-creator" class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p id="forum-date" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
                 </div>
               </div>
-            </div>
-          </template>
-
+            </template>
+            
+          </div>
         </div>
+        
       </div>
     </section>
 
@@ -244,32 +235,40 @@
 
 </body>
 <script type="module">
-
+  import {ForumController} from './assets/js/controller/ForumController.js'
+  import {UserController} from './assets/js/controller/UserController.js'
+  
   window.onload = async () => {
-      const Classes = await getDocs(collection(db, "Classes"))
-      Classes.forEach(async(c) => {
-          let classData = c.data()
+    let urlQuery = new URLSearchParams(window.location.search);
+    let classID = urlQuery.get('class_id')
+    const Forums = await ForumController.getAllClassForum(classID)
+    Forums.forEach( async (f) => {
+      let user = await UserController.getUser(f.userID)
+      let body = document.querySelector('#forum-body')
+      let template = document.querySelector('#forum-card-template')
 
-          let body = document.querySelector('#forum-body')
-          let template = document.querySelector('#forum-card-template')
+      const clone = template.content.cloneNode(true)
+      const forumCreator = clone.querySelector('#forum-creator')
+      const forumTitle = clone.querySelector('#forum-title')
+      const forumTimeStamp = clone.querySelector('#forum-date')
 
-          const clone = template.content.cloneNode(true)
-          const forumClassCode = clone.querySelector('#class-code')
-          const forumCourseName = clone.querySelector('#class-course')
+      
+          
+          
+      var dateObj = new Date(f.date * 1000)
+      var year = dateObj.getFullYear();
+      var month = dateObj.toLocaleDateString(undefined, {month: 'short'});
+      var date = dateObj.getDate();
+      var hour = dateObj.getHours() < 10 ? '0' + dateObj.getHours() : dateObj.getHours();
+      var min = dateObj.getMinutes() < 10 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
+      var time = f.date.toDate().toDateString() + ', ' + f.date.toDate().toLocaleTimeString('en-US')
+      forumCreator.textContent = user.name
+      forumTitle.textContent = f.title
+      forumTimeStamp.textContent = time
+      console.log(f.title)
 
-          const courseDoc = await getDoc(classData.courseRef)
-          if(courseDoc.exists())
-          {
-            let courseData = courseDoc.data()
-            forumClassCode.textContent = classData.classCode
-            forumCourseName.textContent = courseData.name
-
-            clone.querySelector('#card-container').addEventListener('click', ()=>{
-              window.location.assign(`forum_detail.html?id=${c.id}`)
-            })
-            body.appendChild(clone)
-          }
-      })
+      body.appendChild(clone)
+    })
   }
 </script>
 </html>

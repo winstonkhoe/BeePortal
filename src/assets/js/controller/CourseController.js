@@ -6,4 +6,10 @@ export class CourseController{
         let courses = await Course.getCourse(courseID)
         return courses
     }
+
+    static async getUniqueCourses(userID)
+    {
+        let courses = await Course.getUniqueCourses(userID)
+        return courses
+    }
 }

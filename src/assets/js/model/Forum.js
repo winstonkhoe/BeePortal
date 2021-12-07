@@ -4,12 +4,13 @@ import { Firestore, collection, addDoc, getDocs, doc, deleteDoc, getDoc, getFire
 export class Forum {
     static _CollectionName = "Forums"
 
-    constructor(forumID, classID, forumTitle, content, userID, privacy)
+    constructor(forumID, classID, title, content, date, userID, privacy)
     {
         this.forumID = forumID
-       this.forumTitle = forumTitle
+       this.title = title
        this.classID = classID
        this.content = content
+       this.date = date
        this.userID = userID
        this.privacy = privacy
     }
@@ -49,7 +50,7 @@ export class Forum {
     static async getAllClassForum(classID)
     {
         const queryGetAllClassForum = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("classID", "==", classID));
-        let forums = await getDocs(queryGetAllClassForum)
+        let datas = await getDocs(queryGetAllClassForum)
         let modelList = []
         datas.forEach((d) => {
             modelList.push(this.convertToModel(d))
@@ -60,6 +61,6 @@ export class Forum {
     static convertToModel(data)
     {
         let modelData = data.data()
-        return new Forum(data.id, modelData.classID, modelData.forumTitle, modelData.content, modelData.userID, modelData.privacy)
+        return new Forum(data.id, modelData.classID, modelData.title, modelData.content, modelData.date, modelData.userID, modelData.privacy)
     }
 }

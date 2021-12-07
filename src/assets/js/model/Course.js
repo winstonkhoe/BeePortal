@@ -1,5 +1,7 @@
 import { BeeDatabase } from "../database.js";
 import { Firestore, collection, addDoc, getDocs, doc, deleteDoc, getDoc, getFirestore, query, where, Timestamp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js'
+import { Class } from "./Class.js";
+import { User } from "./User.js";
 
 export class Course {
     static _CollectionName = "Courses"
@@ -64,6 +66,25 @@ export class Course {
             modelList.push(this.convertToModel(d))
         })
         return modelList
+    }
+
+    static async getUniqueCourses(userID)
+    {
+        let user = await User.getUser(userID)
+        let classList
+        if(user.role == 'student')
+            classList = await Class.getAllStudentClass(userID)
+        else if(user.role == 'lecturer')
+            classList = await Class.getAllLecturerClass(userID)
+
+        let uniqueCourseList = []
+        uniqueCourseList = await Promise.all (classList.map(async c => {
+            let course = await this.getCourse(c.courseID.id)
+            if(uniqueCourseList.indexOf(course) === -1) {
+                return course
+            }
+        }))
+        return uniqueCourseList
     }
 
     static convertToModel(data)
