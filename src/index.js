@@ -1,5 +1,8 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+// const {  } = require('electron')
+// var session = require('electron').remote.session;
+// var ses = session.fromPartition('persist:name');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -44,3 +47,20 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+// export class CookieHandler{
+//   static setCookie(url, data, name) {
+//     var expiration = new Date();
+//     var hour = expiration.getHours();
+//     hour = hour + 6;
+//     expiration.setHours(hour);
+//     ses.cookies.set({
+//         url: url, //the url of the cookie.
+//         name: name, // a name to identify it.
+//         value: data, // the value that you want to save
+//         expirationDate: expiration.getTime()
+//     }, function(error) {
+//         /*console.log(error);*/
+//     });
+//   }
+// } 
