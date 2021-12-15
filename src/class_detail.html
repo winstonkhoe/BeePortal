@@ -39,6 +39,8 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/forum.css" />
     <link rel="stylesheet" href="assets/css/util.css" />
+    <link rel="stylesheet" href="assets/css/classdetail.css" />
+
 
     <!-- FONT AWESOME -->
     <link
@@ -136,162 +138,216 @@
 
                 <!-- Tab Content -->
                 <div class="tab-content">
+
+                  <!-- Tab 1 Content -->
                   <div class="tab-pane fade show active" id="tab1">
-                    <!-- ======= Features Section ======= -->
                     <section id="features" class="features">
                       <div class="container" data-aos="fade-up">
                         <header class="section-header">
-                          <h2>Features</h2>
-                          <p>Laboriosam et omnis fuga quis dolor direda fara</p>
+                          <p>Course Descriptions</p>
                         </header>
 
-                        <div class="row">
-                          <!-- <div class="col-lg-6">
-              <img src="assets/img/features.png" class="img-fluid" alt="">
-            </div> -->
+                        <div
+                          class="
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                          "
+                        >
+                          <div
+                            class="
+                              col-lg-6
+                              d-flex
+                              justify-content-center
+                              align-content-center
+                            "
+                          >
+                            <img
+                              src="assets/img/learning-illustration.png"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              col-lg-6
+                              mt-lg-0
+                              d-flex
+                              justify-content-center
+                              align-content-center
+                            "
+                          >
+                            <p
+                              id="course-description"
+                              style="text-align: justify"
+                            ></p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
 
-                          <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
-                            <div class="row align-self-center gy-4">
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="200"
-                              >
-                                <div
-                                  class="feature-box d-flex align-items-center"
-                                >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Eos aspernatur rem</h3>
-                                </div>
-                              </div>
+                    <!-- ======= Learning Outcomes Section ======= -->
+                    <section id="features" class="features">
+                      <div class="container" data-aos="fade-up">
+                        <header class="section-header">
+                          <!-- <h2>Features</h2> -->
+                          <p>Learning Outcomes</p>
+                        </header>
 
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="300"
-                              >
+                        <div class="d-flex justify-content-center">
+                          <div class="mt-5 mt-lg-0 d-flex">
+                            <div
+                              id="outcomes-body"
+                              class="row align-self-center gy-4"
+                            >
+                              <template id="outcomes-template">
                                 <div
-                                  class="feature-box d-flex align-items-center"
+                                  class="col-md-12"
+                                  data-aos="zoom-out"
+                                  data-aos-delay="200"
                                 >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Facilis neque ipsa</h3>
+                                  <div
+                                    class="
+                                      feature-box
+                                      d-flex
+                                      align-items-center
+                                    "
+                                  >
+                                    <i class="bi bi-check"></i>
+                                    <h3 id="outcomes-template-text"></h3>
+                                  </div>
                                 </div>
-                              </div>
+                              </template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- END Learning Outcomes Section -->
 
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="400"
-                              >
-                                <div
-                                  class="feature-box d-flex align-items-center"
-                                >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Volup amet voluptas</h3>
-                                </div>
-                              </div>
+                    <!-- ======= Learning Strategies Section ======= -->
+                    <section id="features" class="features">
+                      <div class="container" data-aos="fade-up">
+                        <header class="section-header">
+                          <!-- <h2>Features</h2> -->
+                          <p>Learning Strategies</p>
+                        </header>
 
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="500"
-                              >
+                        <div class="d-flex justify-content-center">
+                          <div class="col-lg-6">
+                            <img
+                              src="assets/img/learning-strategies1.png"
+                              class="img-fluid"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mt-5 mt-lg-0 d-flex">
+                            <div
+                              id="strategies-body"
+                              class="row align-self-center gy-4"
+                            >
+                              <template id="strategies-template">
                                 <div
-                                  class="feature-box d-flex align-items-center"
+                                  class="col-md-12"
+                                  data-aos="zoom-out"
+                                  data-aos-delay="200"
                                 >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Rerum omnis sint</h3>
+                                  <div
+                                    class="
+                                      feature-box
+                                      d-flex
+                                      align-items-center
+                                    "
+                                  >
+                                    <i class="bi bi-check"></i>
+                                    <h3 id="strategies-template-text"></h3>
+                                  </div>
                                 </div>
-                              </div>
+                              </template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- END Learning Strategies Section -->
 
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="600"
-                              >
-                                <div
-                                  class="feature-box d-flex align-items-center"
-                                >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Alias possimus</h3>
-                                </div>
-                              </div>
+                    <!-- ======= Textboks Section ======= -->
+                    <section id="features" class="features">
+                      <div class="container" data-aos="fade-up">
+                        <header class="section-header">
+                          <!-- <h2>Features</h2> -->
+                          <p>Textbooks</p>
+                        </header>
 
-                              <div
-                                class="col-md-6"
-                                data-aos="zoom-out"
-                                data-aos-delay="700"
-                              >
+                        <div class="d-flex justify-content-center">
+                          <div class="mt-5 mt-lg-0 d-flex">
+                            <div
+                              id="textbooks-body"
+                              class="row align-self-center gy-4"
+                            >
+                              <template id="textbooks-template">
                                 <div
-                                  class="feature-box d-flex align-items-center"
+                                  class="col-md-12"
+                                  data-aos="zoom-out"
+                                  data-aos-delay="200"
                                 >
-                                  <i class="bi bi-check"></i>
-                                  <h3>Repellendus mollitia</h3>
+                                  <div
+                                    class="
+                                      feature-box
+                                      d-flex
+                                      align-items-center
+                                    "
+                                  >
+                                    <i class="bi bi-check"></i>
+                                    <h3 id="textbooks-template-text"></h3>
+                                  </div>
                                 </div>
-                              </div>
+                              </template>
                             </div>
                           </div>
                         </div>
                         <!-- / row -->
                       </div>
                     </section>
-                    <!-- END FEATURES SECTION -->
-                    <p>
-                      Consequuntur inventore voluptates consequatur aut vel et.
-                      Eos doloribus expedita. Sapiente atque consequatur minima
-                      nihil quae aspernatur quo suscipit voluptatem.
-                    </p>
-                    <div class="d-flex align-items-center mb-2">
-                      <i class="bi bi-check2"></i>
-                      <h4>
-                        Repudiandae rerum velit modi et officia quasi facilis
-                      </h4>
-                    </div>
-                    <p>
-                      Laborum omnis voluptates voluptas qui sit aliquam
-                      blanditiis. Sapiente minima commodi dolorum non eveniet
-                      magni quaerat nemo et.
-                    </p>
-                    <div class="d-flex align-items-center mb-2">
-                      <i class="bi bi-check2"></i>
-                      <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                    </div>
-                    <p>
-                      Non quod totam minus repellendus autem sint velit. Rerum
-                      debitis facere soluta tenetur. Iure molestiae assumenda
-                      sunt qui inventore eligendi voluptates nisi at. Dolorem
-                      quo tempora. Quia et perferendis.
-                    </p>
+                    <!-- END Textboks Section -->
                   </div>
                   <!-- End Tab 1 Content -->
 
+                  <!-- Tab 2 Content -->
                   <div class="tab-pane fade show" id="tab2">
-                    <p>
-                      Consequuntur inventore voluptates consequatur aut vel et.
-                      Eos doloribus expedita. Sapiente atque consequatur minima
-                      nihil quae aspernatur quo suscipit voluptatem.
-                    </p>
-                    <div class="d-flex align-items-center mb-2">
-                      <i class="bi bi-check2"></i>
-                      <h4>
-                        Repudiandae rerum velit modi et officia quasi facilis
-                      </h4>
-                    </div>
-                    <p>
-                      Laborum omnis voluptates voluptas qui sit aliquam
-                      blanditiis. Sapiente minima commodi dolorum non eveniet
-                      magni quaerat nemo et.
-                    </p>
-                    <div class="d-flex align-items-center mb-2">
-                      <i class="bi bi-check2"></i>
-                      <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                    </div>
-                    <p>
-                      Non quod totam minus repellendus autem sint velit. Rerum
-                      debitis facere soluta tenetur. Iure molestiae assumenda
-                      sunt qui inventore eligendi voluptates nisi at. Dolorem
-                      quo tempora. Quia et perferendis.
-                    </p>
+                    <!-- <div class="page-content page-container" id="page-content"> -->
+                      <!-- <div class="padding"> -->
+                          <!-- <div class="row"> -->
+                              <!-- <div class="col-sm-6"> -->
+                                <div class="d-flex flex-col">
+                                  <header class="d-flex section-header justify-content-start mt-5">
+                                    <h2>Lecturer</h2>
+                                  </header>
+                                  <div id="people-lecturer-body" class="d-flex">
+                                  
+                                  </div>
+                                  
+                                  <header class="d-flex section-header justify-content-start mt-5">
+                                    <h2>Students</h2>
+                                  </header>
+
+                                  <div id="people-student-body" class="d-flex">
+                                    <!-- <div class="list list-row block"> -->
+                                      <template id="people-template">
+                                        <div class="d-flex flex-col justify-content-center align-items-center">
+                                            <div>
+                                              <span id="people-template-initial" class="w-48 avatar gd-warning"></span>
+                                            </div>
+                                            <div class="d-flex flex-col align-items-center"> 
+                                              <p id="people-template-name" class="p-0 m-b-0"></p>
+                                                <div id="people-template-id" class="item-except text-muted text-sm h-1x"></div>
+                                                <div id="people-template-major" class="item-except text-muted text-sm h-1x"></div>
+                                            </div>
+                                        </div>
+                                      </template>
+                                  </div>
+                              </div>
+
                   </div>
                   <!-- End Tab 2 Content -->
 
@@ -322,6 +378,7 @@
                       sunt qui inventore eligendi voluptates nisi at. Dolorem
                       quo tempora. Quia et perferendis.
                     </p>
+                
                   </div>
                   <!-- End Tab 3 Content -->
                 </div>
@@ -393,44 +450,127 @@
     <script src="assets/js/home.js"></script>
   </body>
   <script type="module">
+    import { SyllabusController } from "./assets/js/controller/SyllabusController.js";
     import { ClassController } from "./assets/js/controller/ClassController.js";
     import { CourseController } from "./assets/js/controller/CourseController.js";
 
-    let userID = localStorage.getItem("user_id");
+    const userID = localStorage.getItem("user_id");
 
-    // window.onload = async () => {
-    //   const class_list = await ClassController.getAllClass(userID);
-    //   if (class_list) {
-    //     class_list.forEach(async (c) => {
-    //       // let classData = c.data()
-    //       let courseData = await CourseController.getCourse(c.courseID.id)
-    //       console.log(courseData)
-    //       let body = document.querySelector("#forum-body");
-    //       let template = document.querySelector("#class-card-template");
+    window.onload = async () => {
+      const urlQuery = new URLSearchParams(window.location.search);
+      const classID = urlQuery.get("class_id");
+      const currentClass = await ClassController.getClass(classID);
+      const course = await CourseController.getCourse(currentClass.courseID.id);
+      const syllabus = await SyllabusController.getSyllabus(
+        course.syllabusID.id
+      );
 
-    //       const clone = template.content.cloneNode(true);
-    //       const forumClassCode = clone.querySelector("#class-code");
-    //       const forumCourseName = clone.querySelector("#class-course-name");
+      // Course Description
+      document.getElementById("course-description").textContent =
+        syllabus.description;
+      // End Course Description
 
-    //       clone.querySelector("#forum-link").href = './forum.html?class_id=' + c.classID
+      // Learning Outcomes
+      syllabus.outcomes.map((text) => {
+        let body = document.querySelector("#outcomes-body");
+        let template = document.querySelector("#outcomes-template");
+        let clone = template.content.cloneNode(true);
+        let textComponent = clone.querySelector("#outcomes-template-text");
+        textComponent.textContent = text;
+        body.appendChild(clone);
+      });
+      // End Learning Outcomes
 
-    //       forumClassCode.textContent = c.classCode;
-    //       forumCourseName.textContent = courseData.name;
-    //       console.log(c.courseID.id)
+      // Learning Strategies
+      syllabus.strategies.map((text) => {
+        let body = document.querySelector("#strategies-body");
+        let template = document.querySelector("#strategies-template");
+        let clone = template.content.cloneNode(true);
+        let textComponent = clone.querySelector("#strategies-template-text");
+        textComponent.textContent = text;
+        body.appendChild(clone);
+      });
+      // End Learning Strategies
 
-    //       clone
-    //         .querySelector("#card-container")
-    //         .addEventListener("click", () => {
-    //           // window.location.assign(`class_detail.html?id=${c.id}`);
-    //         });
+      // Textbooks
+      syllabus.textbooks.map((text) => {
+        let body = document.querySelector("#textbooks-body");
+        let template = document.querySelector("#textbooks-template");
+        let clone = template.content.cloneNode(true);
+        let textComponent = clone.querySelector("#textbooks-template-text");
+        textComponent.textContent = text;
+        body.appendChild(clone);
+      });
+      // End Textbooks
 
-    //         // clone.querySelector("#forum-link").addEventListener("click", () => {
-    //         //   window.location.assign(`forum.html?forum_id=${c.classID}`)
-    //         // });
-    //       body.appendChild(clone);
-    //       // }
-    //     });
-    //   }
-    // };
+      // People
+      const lecturerList = await ClassController.getAllLecturerListByClass(classID)
+      lecturerList.map((lecturer) => {
+        let body = document.querySelector("#people-lecturer-body");
+        let template = document.querySelector("#people-template");
+        let clone = template.content.cloneNode(true);
+
+        let initial = clone.querySelector("#people-template-initial");
+        let name = clone.querySelector("#people-template-name");
+        let studentID = clone.querySelector("#people-template-id");
+        let major = clone.querySelector("#people-template-major");
+
+        initial.textContent = lecturer.name[0].toUpperCase();
+        name.textContent = lecturer.name;
+        studentID.textContent = lecturer.lecturerID;
+        // major.textContent = lecturer.major;
+
+        body.appendChild(clone);
+      })
+
+      const studentList = await ClassController.getAllStudentListByClass(classID)
+      studentList.map((student) => {
+        let body = document.querySelector("#people-student-body");
+        let template = document.querySelector("#people-template");
+        let clone = template.content.cloneNode(true);
+
+        let initial = clone.querySelector("#people-template-initial");
+        let name = clone.querySelector("#people-template-name");
+        let studentID = clone.querySelector("#people-template-id");
+        let major = clone.querySelector("#people-template-major");
+
+        initial.textContent = student.name[0].toUpperCase();
+        name.textContent = student.name;
+        studentID.textContent = student.studentID;
+        major.textContent = student.major;
+
+        body.appendChild(clone);
+      })
+
+      // End People
+
+      //   if (class_list) {
+      //     class_list.forEach(async (c) => {
+      //       // let classData = c.data()
+      //       let courseData = await CourseController.getCourse(c.courseID.id)
+      //       console.log(courseData)
+
+      //
+
+      //       clone.querySelector("#forum-link").href = './forum.html?class_id=' + c.classID
+
+      //       forumClassCode.textContent = c.classCode;
+      //       forumCourseName.textContent = courseData.name;
+      //       console.log(c.courseID.id)
+
+      //       clone
+      //         .querySelector("#card-container")
+      //         .addEventListener("click", () => {
+      //           // window.location.assign(`class_detail.html?id=${c.id}`);
+      //         });
+
+      //         // clone.querySelector("#forum-link").addEventListener("click", () => {
+      //         //   window.location.assign(`forum.html?forum_id=${c.classID}`)
+      //         // });
+      //       body.appendChild(clone);
+      //       // }
+      //     });
+      //   }
+    };
   </script>
 </html>

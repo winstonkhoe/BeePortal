@@ -70,9 +70,9 @@
 
         <ol>
           <li><a href="home.html">Home</a></li>
-          <li>Forum</li>
+          <li>Class</li>
         </ol>
-        <h2>Forum</h2>
+        <h2>Class</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -87,27 +87,31 @@
                 </select>
               </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Forum Title</label>
-              <input type="name" class="form-control" id="forum-title" placeholder="Memory Allocation">
+              <label for="exampleFormControlInput1">Class Code</label>
+              <input type="name" class="form-control" id="class-code" placeholder="LM01">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Content</label>
-                <textarea id="forum-content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="exampleFormControlTextarea1">Day</label>
+                <select class="form-control" id="schedule-day-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
               </div>
+
             <div class="form-group">
-              <label for="exampleFormControlSelect2">Class List</label>
-              <select multiple class="form-control" id="class-select">
+              <label for="exampleFormControlSelect2">Schedule List</label>
+              <select class="form-control" id="schedule-time-select">
               </select>
             </div>
-            <div class="form-group ml-4">
-                <input class="form-check-input" type="checkbox" value="" id="forum-privacy">
-                <label class="form-check-label" for="defaultCheck1">
-                  Private
-                </label>
-            </div>
+
             <div class="form-group">
-                <input id="publish-forum" type="submit" value="Publish"> 
+                <input id="create-class" type="submit" value="Create Class"> 
             </div>
+
             <div class="form-group">
                 <p id="error-message" style="color: red;"></p>
             </div>
@@ -149,22 +153,21 @@
     import { CourseController } from './assets/js/controller/CourseController.js'
     import { ClassController } from './assets/js/controller/ClassController.js'
     import { ForumController } from './assets/js/controller/ForumController.js'
+    import { ScheduleController } from './assets/js/controller/ScheduleController.js'
     import { getMultipleSelectValues } from './assets/js/utils.js'
 
     const courseSelectFP = document.getElementById('course-select')
-    const classSelectFP = document.getElementById('class-select')
-    const publishForum = document.getElementById('publish-forum')
+    const classCodeTxt = document.getElementById('class-code')
+    const scheduleDaySelectFP = document.getElementById('schedule-day-select')
+    const scheduleTimeSelectFP = document.getElementById('schedule-time-select')
+    const createClassBtn = document.getElementById('create-class')
     const errorMessage = document.getElementById('error-message')
-    const forumPrivacy = document.getElementById('forum-privacy')
-    const forumTitle = document.getElementById('forum-title')
-    const forumContent = document.getElementById('forum-content')
 
     window.onload = async () => {
 
         let userID = localStorage.getItem('user_id')
-        let courseList = await CourseController.getUniqueCourses(userID)
-
-        courseList.forEach((course) => {
+        let courseList = await CourseController.getAllCourses()
+        courseList.map((course) => {
             let opt = document.createElement('option');
             opt.value = course.courseID;
             opt.innerHTML = course.name;
@@ -175,44 +178,39 @@
             let chosenCourseID = courseSelectFP.value
             if(chosenCourseID != "")
             {
-                while (classSelectFP.firstChild) {
-                    classSelectFP.firstChild.remove()
+                while (scheduleTimeSelectFP.firstChild) {
+                  scheduleTimeSelectFP.firstChild.remove()
                 }
-                let classList = await ClassController.getAllCourseClasses(chosenCourseID)
-                classList.map( c => {
+                let choosenCourseObj
+                courseList.map((course) => {
+                  if(course.courseID == chosenCourseID)
+                    choosenCourseObj = course
+                })
+                
+                let scheduleList = await ScheduleController.getAllScheduleByCredits(choosenCourseObj.credits)
+                scheduleList.map( schedule => {
                     let opt = document.createElement('option');
-                    opt.value = c.classID;
-                    opt.innerHTML = c.classCode;
-                    classSelectFP.appendChild(opt);
+                    opt.value = schedule.scheduleID;
+                    let time = schedule.start.toDate().toLocaleTimeString("en-US") + ' - ' + schedule.end.toDate().toLocaleTimeString("en-US")
+                    opt.innerHTML = time
+                    scheduleTimeSelectFP.appendChild(opt);
                 })
             }
         })
 
-        publishForum.addEventListener('click', ()=>{
+        createClassBtn.addEventListener('click', async ()=>{
             let message = ""
-            let classList = []
-            classList = getMultipleSelectValues(classSelectFP)
-            console.log(classList)
-            if(courseSelectFP.value == "" || classList.length == 0 || forumTitle.value == "" || forumContent.value == "")
+            if(courseSelectFP.value == "" || classCodeTxt.value == "" || scheduleDaySelectFP.value == "" || scheduleTimeSelectFP.value == "")
             {
                 message = "Fields cannot be empty, and options should be picked"
             }
-            errorMessage.textContent = message
             if(message == "")
             {
-                
-                let userID = localStorage.getItem('user_id')
-                classList = getMultipleSelectValues(classSelectFP)
-                classList.map( async (c) => {
-                    console.log(c)
-                    let success = await ForumController.insertForum(c, forumTitle.value, forumContent.value, userID, forumPrivacy.checked)
-                    // if(success == true)
-                    //     console.log("Insert is Successful")
-                    // else
-                    //     console.log("Insert Failed")
-                })
-            
+              let success = await ClassController.insertClass(null, courseSelectFP.value, classCodeTxt.value, null, null, scheduleDaySelectFP.value, scheduleTimeSelectFP.value)
+              message = "Failed Creating Class, try again!"
             }
+            errorMessage.textContent = message
+            //redirect to assign student & lecturer
             
             
                 
@@ -237,7 +235,7 @@
 
 //       const clone = template.content.cloneNode(true)
 //       const forumCreator = clone.querySelector('#forum-creator')
-//       const forumTitle = clone.querySelector('#forum-title')
+//       const classCodeTxt = clone.querySelector('#forum-title')
 //       const forumTimeStamp = clone.querySelector('#forum-date')
 
       
@@ -251,7 +249,7 @@
 //       var min = dateObj.getMinutes() < 10 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
 //       var time = f.date.toDate().toDateString() + ', ' + f.date.toDate().toLocaleTimeString('en-US')
 //       forumCreator.textContent = user.name
-//       forumTitle.textContent = f.title
+//       classCodeTxt.textContent = f.title
 //       forumTimeStamp.textContent = time
 //       console.log(f.title)
 

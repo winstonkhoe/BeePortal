@@ -3,13 +3,17 @@ import { Course } from '../model/Course.js'
 export class CourseController{
     static async getCourse(courseID)
     {
-        let courses = await Course.getCourse(courseID)
-        return courses
+        return await Course.getCourse(courseID)
     }
 
+    static async getAllCourses()
+    {
+        return await Course.getAllCourses()
+    }
+    
     static async getUniqueCourses(userID)
     {
-        let courses = await Course.getUniqueCourses(userID)
-        return courses
+        return await Course.getUniqueCourses(userID)
+       
     }
 }

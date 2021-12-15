@@ -17,4 +17,10 @@ export class UserController {
     let u = await User.getUser(userID)
     return u;
   }
+  
+  static async getAllUserByRole(role)
+  {
+    return await User.getAllUserByRole(role)
+  }
+
 }

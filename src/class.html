@@ -102,22 +102,27 @@
 
       <section class="inner-page counts">
         <div class="container" data-aos="fade-up">
-          <div
-            id="forum-body"
-            class="d-flex flex-row mb-4 align-content-stretch flex-wrap"
-          >
-            <!-- <template id="forum-card-template">
-            <div id="card-container" class="p-5 col-md-4 col-lg-4">
-              <div class="count-box hov-pointer">
-                <div>
-                  <h5 class="font-weight-bold" id="class-course"></h5>
-                  <p id="class-code"></p>
+          <div class="d-flex flex-col">
+            
+            <div id="create-class-body">
+              
+              <template id="create-class-button-template">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <a href="./createClass.html">
+                    <label class="btn btn-secondary active"> Create Class </label>
+                  </a>
                 </div>
-              </div>
+              </template>
+
             </div>
-          </template> -->
+
+            <div
+              id="forum-body"
+              class="d-flex flex-row mb-4 align-content-stretch flex-wrap"
+            >
+
             <template id="class-card-template">
-              <div id="card-container" class="card mr-3" style="width: 18rem">
+              <div id="card-container" class="card mr-3 mb-3" style="width: 18rem">
                 <div class="card-body">
                   <h5 id="class-course-name" class="card-title">Card title</h5>
                   <h6 id="class-code" class="card-subtitle mb-2 text-muted">
@@ -135,6 +140,20 @@
               </div>
             </template>
           </div>
+
+          </div>
+          
+            <!-- <template id="forum-card-template">
+            <div id="card-container" class="p-5 col-md-4 col-lg-4">
+              <div class="count-box hov-pointer">
+                <div>
+                  <h5 class="font-weight-bold" id="class-course"></h5>
+                  <p id="class-code"></p>
+                </div>
+              </div>
+            </div>
+          </template> -->
+            
         </div>
       </section>
     </main>
@@ -169,41 +188,44 @@
   <script type="module">
     import { ClassController } from "./assets/js/controller/ClassController.js";
     import { CourseController } from "./assets/js/controller/CourseController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+
 
     let userID = localStorage.getItem("user_id");
 
     window.onload = async () => {
+      let currUser = await UserController.getUser(userID)
+      if(currUser.role == 'administrative department')
+      {
+        let body = document.querySelector("#create-class-body")
+        let template = document.querySelector('#create-class-button-template')
+        let clone = template.content.cloneNode(true);
+        body.appendChild(clone)
+      }
       const class_list = await ClassController.getAllClass(userID);
       if (class_list) {
         class_list.forEach(async (c) => {
-          // let classData = c.data()
           let courseData = await CourseController.getCourse(c.courseID.id);
-          console.log(courseData);
           let body = document.querySelector("#forum-body");
           let template = document.querySelector("#class-card-template");
 
-          const clone = template.content.cloneNode(true);
-          const forumClassCode = clone.querySelector("#class-code");
-          const forumCourseName = clone.querySelector("#class-course-name");
+          let clone = template.content.cloneNode(true);
+          let forumClassCode = clone.querySelector("#class-code");
+          let forumCourseName = clone.querySelector("#class-course-name");
 
           clone.querySelector("#forum-link").href =
             "./forum.html?class_id=" + c.classID;
 
           forumClassCode.textContent = c.classCode;
           forumCourseName.textContent = courseData.name;
-          console.log(c.courseID.id);
 
           clone
             .querySelector("#card-container")
             .addEventListener("click", () => {
-              window.location.assign(`class_detail.html?id=${c.id}`);
+              window.location.assign(`class_detail.html?class_id=${c.classID}`);
             });
 
-          // clone.querySelector("#forum-link").addEventListener("click", () => {
-          //   window.location.assign(`forum.html?forum_id=${c.classID}`)
-          // });
           body.appendChild(clone);
-          // }
         });
       }
     };

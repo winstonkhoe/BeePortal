@@ -6,4 +6,17 @@ export class ForumController{
         let forums = await Forum.getAllClassForum(classID)
         return forums
     }
+
+    static async getAllForumOfUser(userID)
+    {
+        return await Forum.getAllForumOfUser(userID)
+    }
+
+    static async insertForum(classID, title, content, userID, privacy)
+    {
+        let forum = new Forum(null, classID, title, content, null, userID, privacy)
+        let success = await forum.insertForum()
+        return success
+    }
+
 }
