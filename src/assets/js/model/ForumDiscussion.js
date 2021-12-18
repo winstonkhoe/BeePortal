@@ -18,34 +18,34 @@ import {
 import { Class } from "./Class.js";
 import { User } from "./User.js";
 
-export class Forum {
-  static _CollectionName = "Forums";
+export class ForumDiscussion {
+  static _CollectionName = "ForumDiscussions";
 
-  constructor(forumID, classID, title, content, date, userID, privacy) {
+  constructor(forumDiscussionID, forumID, content, date, userID) {
+    this.forumDiscussionID = forumDiscussionID
     this.forumID = forumID
-    this.classID = classID
-    this.title = title
     this.content = content
     this.date = date
     this.userID = userID
-    this.privacy = privacy
   }
 
-  async insertForum() {
+  async insertForumDiscussion() {
     try {
-    const docIns = await addDoc(
-      collection(BeeDatabase.getDatabase(), "Forums"),
+        console.log(this)
+        console.log(this.forumID)
+        console.log(this.content)
+        console.log(this.userID)
+    const docIns = await addDoc(collection(BeeDatabase.getDatabase(), "ForumDiscussions"),
       {
-        classID: this.classID,
-        title: this.title,
+        forumID: this.forumID,
         content: this.content,
         date: serverTimestamp(),
         userID: this.userID,
-        privacy: this.privacy,
       })
     
     return true;
     } catch (error) {
+        console.log(error)
     return false
     }
   }
@@ -54,20 +54,19 @@ export class Forum {
 
   async removeForum() {}
 
-  static async getForum(forumID) {
+  static async getForumDiscussion(forumDiscussionID) {
     let data = await getDoc(
-      doc(BeeDatabase.getDatabase(), this._CollectionName, forumID).withConverter(forumConverter)
+      doc(BeeDatabase.getDatabase(), this._CollectionName, forumDiscussionID).withConverter(forumDiscussionConverter)
     );
     return data.data()
   }
 
-  static async getAllClassForum(classID) {
-    console.log(classID)
-    const queryGetAllClassForum = query(
+  static async getAllForumDiscussion(forumID) {
+    const queryGetAllForumDiscussion = query(
       collection(BeeDatabase.getDatabase(), this._CollectionName),
-      where("classID", "==", classID)
-    ).withConverter(forumConverter);
-    let datas = await getDocs(queryGetAllClassForum);
+      where("forumID", "==", forumID)
+    ).withConverter(forumDiscussionConverter);
+    let datas = await getDocs(queryGetAllForumDiscussion);
     let forums = datas.docs.map((d) => {
       return d.data();
     });
@@ -105,29 +104,23 @@ export class Forum {
   }
 }
 
-const forumConverter = {
+const forumDiscussionConverter = {
   toFirestore: (forum) => {
     return {
-        classID: forum.classID,
-        title: forum.title,
+        forumID: forum.forumID,
         content: forum.content,
         date: serverTimestamp(),
         userID: forum.userID,
-        privacy: forum.privacy,
     };
   },
   fromFirestore: (snapshot, options) => {
     let d = snapshot.data(options);
-    let f = new Forum(
+    return new ForumDiscussion(
         snapshot.id,
-        d.classID,
-        d.title,
+        d.forumID,
         d.content,
         d.date,
         d.userID,
-        d.privacy
       );
-      console.log(f)
-    return f
   },
 };

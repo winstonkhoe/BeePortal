@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Forum</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/util.css" />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
+            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
+            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li>Add Assignment</li>
+          </ol>
+          <h2>Add Assignment</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page counts">
+        <div class="container" data-aos="fade-up">
+          <!-- <form> -->
+          <div class="form-group">
+            <label for="exampleFormControlSelectCourse">Course List</label>
+            <select class="form-control" id="assignment-course-select">
+              <option>None</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Assignment Title</label>
+            <input
+              type="name"
+              class="form-control"
+              id="assignment-title"
+              placeholder="Memory Allocation - Session 8"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Content</label>
+            <textarea
+              class="form-control"
+              id="assignment-content"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Submission Date</label>
+            <input type="datetime-local" class="form-control" id="assignment-submission-date" name="submission-date">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Class List</label>
+            <select multiple class="form-control" id="assignment-class-select"></select>
+          </div>
+          <div class="form-group ml-4">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="assignment-group-checkbox"
+            />
+            <label class="form-check-label" for="defaultCheck1">
+              Group Assignment
+            </label>
+          </div>
+          <div class="form-group">
+            <input id="save-assignment" type="submit" value="Save Assignment" />
+          </div>
+          <div class="d-flex flex-column" id="group-assign-body">
+            <template id="group-assign-template">
+              <div class="form-group">
+                <label
+                  id="group-number"
+                  for="exampleFormControlSelect2"
+                ></label>
+                <select
+                  multiple
+                  class="form-control"
+                  id="group-select-student"
+                ></select>
+                <div
+                  id="group-assign-btn"
+                  class="btn-group-toggle mt-3 mb-3"
+                  data-toggle="buttons"
+                >
+                  <label class="btn btn-secondary active">Assign Group</label>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="form-group">
+            <input id="add-assignment" type="submit" value="Add Assignment" />
+          </div>
+          <div class="form-group">
+            <p id="error-message" style="color: red"></p>
+          </div>
+          <!-- </form> -->
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    // FP -> Fetch Place
+    import { CourseController } from "./assets/js/controller/CourseController.js";
+    import { ClassController } from "./assets/js/controller/ClassController.js";
+    import { ForumController } from "./assets/js/controller/ForumController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+    import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
+    import { getMultipleSelectValues } from "./assets/js/utils.js";
+
+    const courseSelectFP = document.getElementById("assignment-course-select");
+    const classSelectFP = document.getElementById("assignment-class-select");
+    const assignmentSubmissionDateTxt = document.getElementById("assignment-submission-date");
+    const assignmentTitleTxt = document.getElementById("assignment-title");
+    const assignmentContentTxt = document.getElementById("assignment-content");
+    const assignmentGroup = document.getElementById("assignment-group-checkbox");
+    const saveAssignmentBtn = document.getElementById("save-assignment");
+    const addAssignmentBtn = document.getElementById("add-assignment");
+    const errorMessage = document.getElementById("error-message");
+    let assignmentListObj = []
+
+    window.onload = async () => {
+      let userID = localStorage.getItem("user_id");
+      let courseList = await CourseController.getUniqueCourses(userID);
+
+      courseList.forEach((course) => {
+        let opt = document.createElement("option");
+        opt.value = course.courseID;
+        opt.innerHTML = course.name;
+        courseSelectFP.appendChild(opt);
+      });
+
+      courseSelectFP.addEventListener("change", async () => {
+        let chosenCourseID = courseSelectFP.value;
+        if (chosenCourseID != "") {
+          while (classSelectFP.firstChild) {
+            classSelectFP.firstChild.remove();
+          }
+          let classList = await ClassController.getAllCourseClasses(
+            chosenCourseID
+          );
+          classList.map((c) => {
+            let opt = document.createElement("option");
+            opt.value = c.classID;
+            opt.innerHTML = c.classCode;
+            classSelectFP.appendChild(opt);
+          });
+        }
+      });
+
+      function clearUnselectedOptions(selectStudent, selectedStudents)
+      {
+        let removingList = []
+          for(let i = 0; i < selectStudent.length; i++)
+          {
+            let s = selectStudent.options[i]
+            if(selectedStudents.indexOf(s.value) < 0)
+            {
+              removingList.push(s)
+            }
+          }
+          removingList.map((r)=>{
+            r.parentNode.removeChild(r)
+        })
+      }
+
+      function assignGroupFetch(
+        classCode,
+        classID,
+        allStudentList,
+        selectedList,
+        selectedStudents,
+        body,
+        template,
+        groupCounter
+      ) {
+        if (selectedStudents.length > 0) {
+          selectedList.push(selectedStudents);
+          selectedList = selectedList.flat()
+          let remainingStudents = allStudentList.filter(
+            (s) => !selectedList.includes(s.userID)
+          );
+
+          if (remainingStudents.length > 0) {
+            let clone = template.content.cloneNode(true);
+            let groupNumber = clone.querySelector("#group-number");
+            groupNumber.textContent = `${classCode} - Group ${groupCounter}`;
+            groupCounter += 1;
+
+            let selectStudent = clone.querySelector("#group-select-student");
+            selectStudent.name = classID
+            let assignGroupBtn = clone.querySelector("#group-assign-btn");
+            remainingStudents.map(async (s) => {
+              let opt = document.createElement("option");
+              opt.value = s.userID;
+              opt.innerHTML = s.studentID + " - " + s.name;
+              selectStudent.appendChild(opt);
+            });
+
+            assignGroupBtn.addEventListener("click", async () => {
+              let selectedS = [];
+              selectedS = getMultipleSelectValues(selectStudent);
+              if (selectedS.length > 0) {
+                assignGroupBtn.parentNode.removeChild(assignGroupBtn)
+
+                let assignmentObject = assignmentListObj.filter(asgObj => {
+                                return asgObj.classID == selectStudent.name
+                              })
+                  
+                await AssignmentController.assignStudentGroup(assignmentObject[0].assignmentID, groupCounter, selectedStudents)
+
+                clearUnselectedOptions(selectStudent, selectedS)
+
+                assignGroupFetch(
+                  classCode,
+                  classID,
+                  allStudentList,
+                  selectedList,
+                  selectedS,
+                  groupAssignBody,
+                  templateGroupAssign,
+                  groupCounter);
+                
+              }
+            });
+            body.appendChild(clone);
+          }
+        }
+      }
+
+      function clearGroupList(selectedList, groupCounter, body) {
+        while (body.firstChild) {
+          body.firstChild.remove();
+        }
+      }
+
+      //Assign Group Logics
+      const templateGroupAssign = document.getElementById(
+        "group-assign-template"
+      );
+      const groupAssignBody = document.getElementById("group-assign-body");
+      assignmentGroup.addEventListener("change", async () => {
+        if (!assignmentGroup.checked) {
+          clearGroupList(groupAssignBody);
+        } else {
+          let classList = [];
+          classList = getMultipleSelectValues(classSelectFP);
+          if (classList.length > 0) {
+            classList.map(async (c) => {
+              let groupCounter = 1;
+              let clone = templateGroupAssign.content.cloneNode(true);
+              let groupNumber = clone.querySelector("#group-number");
+              let currClass = await ClassController.getClass(c)
+              groupNumber.textContent = `${currClass.classCode} - Group ${groupCounter}`;
+              groupCounter += 1;
+              let allStudentList =
+                await ClassController.getAllStudentListByClass(c);
+              let selectedList = [];
+              let selectStudent = clone.querySelector('#group-select-student')
+              selectStudent.name = currClass.classID
+
+              let assignGroupBtn = clone.querySelector("#group-assign-btn");
+
+              if (allStudentList.length > 0) {
+                allStudentList.map((s) => {
+                  let opt = document.createElement("option");
+                  opt.value = s.userID;
+                  opt.innerHTML = s.studentID + " - " + s.name;
+                  selectStudent.appendChild(opt);
+                });
+              }
+
+              assignGroupBtn.addEventListener("click", async () => {
+                let selectedStudents = [];
+                selectedStudents = getMultipleSelectValues(selectStudent);
+
+                if(selectedStudents.length > 0)
+                {
+                  assignGroupBtn.parentNode.removeChild(assignGroupBtn)
+
+                  let assignmentObject = assignmentListObj.filter(asgObj => {
+                                return asgObj.classID == selectStudent.name
+                              })
+                  
+                              console.log(assignmentObject)
+                              console.log(assignmentListObj)
+                  await AssignmentController.assignStudentGroup(assignmentObject[0].assignmentID, groupCounter, selectedStudents)
+
+                  clearUnselectedOptions(selectStudent, selectedStudents)
+
+                  assignGroupFetch(
+                    currClass.classCode,
+                    currClass.classID,
+                    allStudentList,
+                    selectedList,
+                    selectedStudents,
+                    groupAssignBody,
+                    templateGroupAssign,
+                    groupCounter
+                  );
+                }
+              });
+
+              groupAssignBody.appendChild(clone);
+            });
+          }
+          else
+          {
+
+          }
+        }
+      });
+
+      saveAssignmentBtn.addEventListener('click', ()=>{
+        let message = "";
+        let classList = [];
+        classList = getMultipleSelectValues(classSelectFP);
+        if(assignmentTitleTxt.value == "" || assignmentContentTxt.value == "" || assignmentSubmissionDateTxt.value == "" || classList.length == 0)
+        {
+          message = "Fields cannot be empty, and options should be picked";
+        }
+        errorMessage.textContent = message;
+        if(message == "")
+        {
+          classList.map(async(c) => {
+            let success = await AssignmentController.insertAssignment(c, assignmentTitleTxt.value, assignmentContentTxt.value, assignmentSubmissionDateTxt.value, assignmentGroup.checked)
+            console.log(success)
+            if(success !== false)
+            {
+              let asgObj = {assignmentID: success, classID: c}
+              assignmentListObj.push(asgObj)
+            }
+          })
+        }
+      })
+      addAssignmentBtn.addEventListener("click", () => {
+        history.go(-1)
+      });
+    };
+  </script>
+</html>

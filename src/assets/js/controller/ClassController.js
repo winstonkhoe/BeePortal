@@ -20,7 +20,12 @@ export class ClassController{
 
     static async updateClass(classID, lecturerID, studentID)
     {
-        return await Class.updateClass(classID, lecturerID, studentID) == true ? window.location.assign(`./class.html`) : false
+        let update = await Class.updateClass(classID, lecturerID, studentID)
+        if(update !== false)
+        {
+            window.location.assign(`./class.html?class_id=${update}`)
+        }
+        return false
     }
     
     static async getClass(classID)
@@ -32,6 +37,7 @@ export class ClassController{
     static async getAllClass(userID)
     {
         let u = await User.getUser(userID)
+        console.log(u)
         var classList 
         if(u.role == 'student')
         {

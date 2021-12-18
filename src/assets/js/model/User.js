@@ -66,6 +66,7 @@ export class User {
 
 }
 
+
 class Student extends User{
   constructor(userID, studentID, email, password, name, major, role)
   {
@@ -82,6 +83,54 @@ class Lecturer extends User{
     this.lecturerID = lecturerID
   }
 }
+
+class AdministrativeDepartment extends User{
+  constructor(userID, email, password, name, role)
+  {
+    super(userID, email, password, name, role)
+  }
+}
+class AcademicDepartment extends User{
+  constructor(userID, email, password, name, role)
+  {
+    super(userID, email, password, name, role)
+  }
+}
+class ScoringDepartment extends User{
+  constructor(userID, email, password, name, role)
+  {
+    super(userID, email, password, name, role)
+  }
+}
+
+var UserFactory = function () {
+  this.createUser = function (userID, studentID, lecturerID, major, email, password, name, role) {
+    var user
+    if(role === 'student')
+    {
+      user = new Student(userID, studentID, email, password, name, major, role)
+    }
+    else if(role === 'lecturer')
+    {
+      user = new Lecturer(userID, lecturerID, email, password, name, role)
+    }
+    else if(role === 'administrative department')
+    {
+      user = new AcademicDepartment(userID, email, password, name, role)
+    }
+    else if(role === 'academic department')
+    {
+      user = new AcademicDepartment(userID, email, password, name, role)
+    }
+    else if(role === 'scoring department')
+    {
+      user = new ScoringDepartment(userID, email, password, name, role)
+    }
+
+    return user
+  }
+}
+
 
 const userConverter = {
   toFirestore: (user) => {
@@ -119,18 +168,19 @@ const userConverter = {
     }
   },
   fromFirestore: (snapshot, options) => {
-      let d = snapshot.data(options);
-      if(d.role == 'student')
-      {
-        return new Student(snapshot.id, d.studentID, d.email, d.password, d.name, d.major, d.role)
-      }
-      else if(d.role == 'lecturer')
-      {
-        return new Lecturer(snapshot.id, d.lecturerID, d.email, d.password, d.name, d.role)
-      }
-      else
-      {
-        return new User(snapshot.id, d.email, d.password, d.name, d.role)
-      }
+    let d = snapshot.data(options);
+    return new UserFactory().createUser(snapshot.id, d.studentID, d.lecturerID, d.major, d.email, d.password, d.name, d.role)
+      // if(d.role == 'student')
+      // {
+      //   return new Student(snapshot.id, d.studentID, d.email, d.password, d.name, d.major, d.role)
+      // }
+      // else if(d.role == 'lecturer')
+      // {
+      //   return new Lecturer(snapshot.id, d.lecturerID, d.email, d.password, d.name, d.role)
+      // }
+      // else
+      // {
+      //   return new User(snapshot.id, d.email, d.password, d.name, d.role)
+      // }
   }
 };

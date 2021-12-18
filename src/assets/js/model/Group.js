@@ -2,21 +2,17 @@ import { BeeDatabase } from "../database.js";
 import { Firestore, collection, addDoc, getDocs, doc, deleteDoc, getDoc, getFirestore, setDoc, query, where, updateDoc, arrayUnion, Timestamp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js'
 import { User } from "./User.js";
 
-export class Class {
-    static _CollectionName = "Classes"
-    constructor(classID, courseID, classCode, studentID, lecturerID, day, scheduleID)
+export class Group {
+    static _CollectionName = "Groups"
+
+    constructor(groupID, group, userID)
     {
-       this.classID = classID
-       this.courseID = courseID
-       this.classCode = classCode
-       this.studentID = studentID
-       this.lecturerID = lecturerID
-       this.day = day
-       this.scheduleID = scheduleID
-    //    this.day = day
+       this.groupID = groupID
+       this.group = group
+       this.userID = userID
     }
 
-    async insertClass()
+    async insertGroup()
     {
         try {
             let d = await Promise.all(addDoc(collection(BeeDatabase.getDatabase(), "Classes"), {
@@ -60,17 +56,16 @@ export class Class {
 
     }
 
-    static async getClass(classID)
+    static async getGroup(groupID)
     {
-        // console.log(classID)
-        let data = await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, classID).withConverter(classConverter))
+        let data = await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, groupID).withConverter(groupConverter))
         
         return data.data()
     }
 
-    static async getAllClass()
+    static async getGroupIDofUser()
     {
-        let data = await getDocs((collection(BeeDatabase.getDatabase(), this._CollectionName)).withConverter(classConverter))
+        let data = await getDocs((collection(BeeDatabase.getDatabase(), this._CollectionName)).withConverter(groupConverter))
         let classList = data.docs.map((d) => {
             return d.data()
         })
@@ -109,7 +104,7 @@ export class Class {
 
     static async getAllStudentClass(studentID)
     {
-        const queryGetAllStudentClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("studentID", "array-contains", doc(BeeDatabase.getDatabase(), "Users", studentID))).withConverter(classConverter);
+        const queryGetAllStudentClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("studentID", "array-contains", doc(BeeDatabase.getDatabase(), "Users", studentID))).withConverter(groupConverter);
         let datas = await getDocs(queryGetAllStudentClass)
         let classList = datas.docs.map((d) => {
             return d.data()
@@ -120,7 +115,7 @@ export class Class {
 
     static async getAllLecturerClass(lecturerID)
     {
-        const queryGetAllLecturerClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("lecturerID", "array-contains", doc(BeeDatabase.getDatabase(), "Users", lecturerID))).withConverter(classConverter);
+        const queryGetAllLecturerClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("lecturerID", "array-contains", doc(BeeDatabase.getDatabase(), "Users", lecturerID))).withConverter(groupConverter);
         let datas = await getDocs(queryGetAllLecturerClass)
         let classList = datas.docs.map((d) => {
             return d.data()
@@ -131,7 +126,7 @@ export class Class {
 
     static async getAllCourseClasses(courseID)
     {
-        const queryGetAllCourseClasses = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("courseID", "==", doc(BeeDatabase.getDatabase(), "Courses", courseID))).withConverter(classConverter);
+        const queryGetAllCourseClasses = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("courseID", "==", doc(BeeDatabase.getDatabase(), "Courses", courseID))).withConverter(groupConverter);
         let datas = await getDocs(queryGetAllCourseClasses)
         let classList = datas.docs.map((d) => {
             return d.data()
@@ -148,7 +143,7 @@ export class Class {
     }
 }
 
-const classConverter = {
+const groupConverter = {
     toFirestore: (c) => {
         return {
             courseID: doc(BeeDatabase.getDatabase(), "Courses", c.courseID), 
@@ -161,10 +156,11 @@ const classConverter = {
             }
         };
     },
-    fromFirestore: (snapshot, options) => {
+    fromFirestore: async (snapshot, options) => {
         let d = snapshot.data(options);
-        let s = d.schedule 
-
-        return new Class(snapshot.id, d.courseID, d.classCode, d.studentID, d.lecturerID, s.day, s.scheduleID);
+        let userList = await Promise.all(d.userID.map( async (user) => {
+            return await User.getUser(user.id)
+        }))
+        return new Group(snapshot.id, d.group, userList);
     }
 };

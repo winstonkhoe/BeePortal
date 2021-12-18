@@ -92,9 +92,9 @@
         <div class="container">
           <ol>
             <li><a href="home.html">Home</a></li>
-            <li>Class</li>
+            <li>Score</li>
           </ol>
-          <h2>Class</h2>
+          <h2>Score</h2>
         </div>
       </section>
       <!-- End Breadcrumbs -->
@@ -127,14 +127,8 @@
                   <h6 id="class-code" class="card-subtitle mb-2 text-muted">
                     Card subtitle
                   </h6>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a id="forum-link" href="#" class="card-link"
-                    ><i class="fas fa-comment-alt"></i
-                  ></a>
+                  <a id="assignment-link" href="#" class="card-link"
+                    ><i class="fas fa-tasks"></i></a>
                 </div>
               </div>
             </template>
@@ -214,8 +208,8 @@
           let forumClassCode = clone.querySelector("#class-code");
           let forumCourseName = clone.querySelector("#class-course-name");
 
-          clone.querySelector("#forum-link").href =
-            "./forum.html?class_id=" + c.classID;
+          clone.querySelector("#assignment-link").href =
+            `./assignment.html?class_id=${c.classID}`
 
           forumClassCode.textContent = c.classCode;
           forumCourseName.textContent = courseData.name;
@@ -223,7 +217,7 @@
           clone
             .querySelector("#card-container")
             .addEventListener("click", () => {
-              window.location.assign(`class_detail.html?class_id=${c.classID}`);
+              window.location.assign(`./assignment.html?class_id=${c.classID}`);
             });
 
           body.appendChild(clone);

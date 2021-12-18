@@ -48,7 +48,7 @@
       </a>
 
       <nav id="navbar" class="navbar">
-        <ul>
+        <ul id="navbar-list">
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="class.html">Class</a></li>
           <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
@@ -57,7 +57,9 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
     </div>
   </header><!-- End Header -->
 
@@ -131,8 +133,19 @@
     import {UserController} from './assets/js/controller/UserController.js'
 
     window.onload = async () => {
-      let userID = localStorage.getItem('user_id') 
-      const User = await UserController.getUser(userID)
+      let currUserID = localStorage.getItem('user_id')
+      let currUser = await UserController.getUser(currUserID)
+      let scoreRole = ['lecturer', 'student', 'scoring department']
+      if(scoreRole.indexOf(currUser.role) >= 0)
+      {
+        let navTemplate = document.getElementById('nav-item-template')
+        let navBody = document.getElementById('navbar-list')
+        let navClone = navTemplate.content.cloneNode(true)
+        let navA = navClone.querySelector('a')
+        navA.href = `./score.html`
+        navA.textContent = 'Score'
+        navBody.appendChild(navClone)
+      } 
 
       let body = document.querySelector('#user-card-fetch')
       let template = document.querySelector('#user-card-template')
@@ -141,8 +154,8 @@
       const userName = clone.querySelector('#user-name')
       const userRole = clone.querySelector('#user-role')
 
-      userName.textContent = User.name
-      userRole.textContent = User.role
+      userName.textContent = currUser.name
+      userRole.textContent = currUser.role
 
       // clone.querySelector('#card-container').addEventListener('click', ()=>{
       //   window.location.assign(`forum_detail.html?id=${c.id}`)

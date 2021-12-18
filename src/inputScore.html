@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Forum</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/classdetail.css" />
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul id='navbar-list'>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
+            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
+            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <template id='nav-item-template'>
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li>Score</li>
+          </ol>
+          <h2>Input Score</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page">
+        <div class="d-flex flex-column" data-aos="fade-up">
+          <header class="section-header d-flex justify-content-center">
+            <h2 id="assignment-question"></h2>
+          </header>
+          <div
+            class="d-flex card w-100 justify-content-center align-items-center"
+          >
+            <div id="assignment-answer-body" class="container"></div>
+            <template id="assignment-answer-template">
+              <div class="row">
+                <div class="d-flex flex-row m-3 w-100 ">
+                  <div
+                    class="
+                      d-flex
+                      flex-column
+                      justify-content-start
+                      align-items-center
+                      col
+                    "
+                  >
+                    <!-- <div>
+                      <span
+                        id="forum-user-initial"
+                        class="w-48 avatar gd-warning"
+                        >W</span
+                      >
+                    </div> -->
+                    <div
+                      class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                      "
+                    >
+                      <p id="assignment-user-name" class="p-0 m-0">Winston</p>
+                      <p id="assignment-user-id" class="p-0 m-0">2440059431</p>
+                    </div>
+                  </div>
+                  <div class="card-body col-6">
+                    <p id="assignment-answer" class="card-text">
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </p>
+                  </div>
+                  <div class="form-group col m-0 p-0 d-flex align-items-center">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="assignment-score"
+                    />
+                  </div>
+                </div>
+              </div>
+            <hr/>
+            </template>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <a id="save-score" href="#" class="btn btn-primary">Save Score</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    import { AnswerController } from "./assets/js/controller/AnswerController.js";
+    import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
+    import { ScoreController } from "./assets/js/controller/ScoreController.js";
+    import { ClassController } from "./assets/js/controller/ClassController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+
+    var dateOptions = { year: "numeric", month: "short", day: "numeric" };
+    var timeOptions = {
+      timeZone: "Asia/Jakarta",
+      timeZoneName: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+
+    window.onload = async () => {
+      let currUserID = localStorage.getItem('user_id')
+      let currUser = await UserController.getUser(currUserID)
+      let scoreRole = ['lecturer', 'student', 'scoring department']
+      if(scoreRole.indexOf(currUser.role) >= 0)
+      {
+        let navTemplate = document.getElementById('nav-item-template')
+        let navBody = document.getElementById('navbar-list')
+        let navClone = navTemplate.content.cloneNode(true)
+        let navA = navClone.querySelector('a')
+        navA.href = `./score.html`
+        navA.textContent = 'Score'
+        navBody.appendChild(navClone)
+      } 
+
+      let urlQuery = new URLSearchParams(window.location.search);
+      let assignmentID = urlQuery.get("assignment_id");
+
+      let currAssignment = await AssignmentController.getAssignment(
+        assignmentID
+      );
+      let question = document.getElementById("assignment-question");
+      question.textContent = currAssignment.content;
+
+      const saveScoreBtn = document.getElementById("save-score");
+
+      let body = document.querySelector("#assignment-answer-body");
+
+      if (!currAssignment.group) {
+        let studentList = [];
+        studentList = await ClassController.getAllStudentListByClass(
+          currAssignment.classID
+        );
+        let template = document.getElementById("assignment-answer-template");
+
+        studentList.map(async (student) => {
+          let studentAnswer =
+            await AnswerController.getStudentAnswerOfIndividualAssignment(
+              assignmentID,
+              student.userID
+            );
+          let clone = template.content.cloneNode(true);
+
+          let userName = clone.querySelector("#assignment-user-name");
+          userName.textContent = student.name;
+
+          let userID = clone.querySelector("#assignment-user-id");
+          userID.textContent = student.studentID;
+
+          
+          let userAnswer = clone.querySelector("#assignment-answer");
+          userAnswer.textContent =
+          studentAnswer === null ? "" : studentAnswer.answer;
+          
+          let inputScore = clone.querySelector("input");
+          inputScore.id = student.userID;
+          if (studentAnswer === null) {
+            inputScore.value = 0;
+          }
+
+          let existingScore = await ScoreController.getExistingScore(currAssignment.assignmentID, student.userID)
+          console.log(existingScore)
+          if(existingScore !== null && existingScore !== undefined && existingScore.length > 0)
+          {
+            inputScore.value = existingScore[0].score
+          }
+
+          body.appendChild(clone);
+        });
+      }
+
+      saveScoreBtn.addEventListener("click", async () => {
+        let allInputScores = body.querySelectorAll("input");
+        console.log(allInputScores)
+        let inputScoreList = []
+        let emptyValue = false
+        allInputScores.forEach((i) => {
+          if(i.value == '')
+            emptyValue = true
+          inputScoreList.push(i)
+        })
+        if(emptyValue === false)
+        {
+          await Promise.all(
+            inputScoreList.map(async (input) => {
+              let inputUserID = input.id;
+              let inputScoreValue = input.value;
+  
+              await ScoreController.insertScore(
+                currAssignment.classID,
+                currAssignment.assignmentID,
+                inputUserID,
+                inputScoreValue
+              );
+            })
+          );
+        }
+        else
+        {
+          alert('All Score must be filled!')
+        }
+      });
+    };
+  </script>
+</html>

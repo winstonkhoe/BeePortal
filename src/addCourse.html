@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Forum</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/forum.css">
+  <link rel="stylesheet" href="assets/css/util.css">
+
+  <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+   <!-- ======= Header ======= -->
+   <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="home.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span>BeePortal</span>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
+          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
+          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="home.html">Home</a></li>
+          <li>Course</li>
+        </ol>
+        <h2>Course</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page counts">
+      <div class="container" data-aos="fade-up">
+        <!-- <form> -->
+            <div class="form-group">
+                <label for="exampleFormControlSelectCourse">Name</label>
+                <input type="name" class="form-control" id="class-code" placeholder="Data Structure">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Credits</label>
+                <input type="number" class="form-control" id="schedule-day-select" placeholder="2">
+            </div>
+
+            <div class="form-group">
+                <input id="create-class" type="submit" value="Create Class"> 
+            </div>
+
+            <div class="form-group">
+                <p id="error-message" style="color: red;"></p>
+            </div>
+          <!-- </form> -->
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="credits">
+        BeePortal by WO
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/home.js"></script>
+
+</body>
+<script type="module">
+    // FP -> Fetch Place
+    import { CourseController } from './assets/js/controller/CourseController.js'
+    import { ClassController } from './assets/js/controller/ClassController.js'
+    import { ForumController } from './assets/js/controller/ForumController.js'
+    import { ScheduleController } from './assets/js/controller/ScheduleController.js'
+    import { getMultipleSelectValues } from './assets/js/utils.js'
+
+    const courseSelectFP = document.getElementById('course-select')
+    const classCodeTxt = document.getElementById('class-code')
+    const scheduleDaySelectFP = document.getElementById('schedule-day-select')
+    const scheduleTimeSelectFP = document.getElementById('schedule-time-select')
+    const createClassBtn = document.getElementById('create-class')
+    const errorMessage = document.getElementById('error-message')
+
+    window.onload = async () => {
+
+        let userID = localStorage.getItem('user_id')
+        let courseList = await CourseController.getAllCourses()
+        courseList.map((course) => {
+            let opt = document.createElement('option');
+            opt.value = course.courseID;
+            opt.innerHTML = course.name;
+            courseSelectFP.appendChild(opt);
+        })
+
+        courseSelectFP.addEventListener('change', async () => {
+            let chosenCourseID = courseSelectFP.value
+            if(chosenCourseID != "")
+            {
+                while (scheduleTimeSelectFP.firstChild) {
+                  scheduleTimeSelectFP.firstChild.remove()
+                }
+                let choosenCourseObj
+                courseList.map((course) => {
+                  if(course.courseID == chosenCourseID)
+                    choosenCourseObj = course
+                })
+                
+                let scheduleList = await ScheduleController.getAllScheduleByCredits(choosenCourseObj.credits)
+                scheduleList.map( schedule => {
+                    let opt = document.createElement('option');
+                    opt.value = schedule.scheduleID;
+                    let time = schedule.start.toDate().toLocaleTimeString("en-US") + ' - ' + schedule.end.toDate().toLocaleTimeString("en-US")
+                    opt.innerHTML = time
+                    scheduleTimeSelectFP.appendChild(opt);
+                })
+            }
+        })
+
+        createClassBtn.addEventListener('click', async ()=>{
+            let message = ""
+            if(courseSelectFP.value == "" || classCodeTxt.value == "" || scheduleDaySelectFP.value == "" || scheduleTimeSelectFP.value == "")
+            {
+                message = "Fields cannot be empty, and options should be picked"
+            }
+            if(message == "")
+            {
+              let success = await ClassController.insertClass(null, courseSelectFP.value, classCodeTxt.value, null, null, scheduleDaySelectFP.value, scheduleTimeSelectFP.value)
+              message = "Failed Creating Class, try again!"
+            }
+            errorMessage.textContent = message
+            //redirect to assign student & lecturer
+            
+            
+                
+        })
+
+
+        
+    }
+  
+    
+//   import {ForumController} from './assets/js/controller/ForumController.js'
+//   import {UserController} from './assets/js/controller/UserController.js'
+  
+//   window.onload = async () => {
+//     let urlQuery = new URLSearchParams(window.location.search);
+//     let classID = urlQuery.get('class_id')
+//     const Forums = await ForumController.getAllClassForum(classID)
+//     Forums.forEach( async (f) => {
+//       let user = await UserController.getUser(f.userID)
+//       let body = document.querySelector('#forum-body')
+//       let template = document.querySelector('#forum-card-template')
+
+//       const clone = template.content.cloneNode(true)
+//       const forumCreator = clone.querySelector('#forum-creator')
+//       const classCodeTxt = clone.querySelector('#forum-title')
+//       const forumTimeStamp = clone.querySelector('#forum-date')
+
+      
+          
+          
+//       var dateObj = new Date(f.date * 1000)
+//       var year = dateObj.getFullYear();
+//       var month = dateObj.toLocaleDateString(undefined, {month: 'short'});
+//       var date = dateObj.getDate();
+//       var hour = dateObj.getHours() < 10 ? '0' + dateObj.getHours() : dateObj.getHours();
+//       var min = dateObj.getMinutes() < 10 ? '0' + dateObj.getMinutes() : dateObj.getMinutes();
+//       var time = f.date.toDate().toDateString() + ', ' + f.date.toDate().toLocaleTimeString('en-US')
+//       forumCreator.textContent = user.name
+//       classCodeTxt.textContent = f.title
+//       forumTimeStamp.textContent = time
+//       console.log(f.title)
+
+//       body.appendChild(clone)
+//     })
+//   }
+</script>
+</html>

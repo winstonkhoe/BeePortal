@@ -40,6 +40,14 @@
     <link rel="stylesheet" href="assets/css/forum.css" />
     <link rel="stylesheet" href="assets/css/util.css" />
 
+        <!-- FONT AWESOME -->
+        <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous"
+      />
+      
     <!-- =======================================================
   * Template Name: FlexStart - v1.9.0
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
@@ -106,7 +114,7 @@
               class="d-flex flex-row mb-4 align-content-stretch flex-wrap"
             >
               <template id="forum-card-template">
-                <div class="card" style="width: 18rem">
+                <div id="forum-card" class="card" style="width: 18rem">
                   <div class="card-body">
                     <h5 id="forum-title" class="card-title">Card title</h5>
                     <h6
@@ -165,11 +173,16 @@
 
       let urlQuery = new URLSearchParams(window.location.search);
       let classID = urlQuery.get("class_id");
-
+      let Forums
       if(classID === null || typeof classID === 'undefined')
       {
         let userID = localStorage.getItem('user_id')
-        let Forums = await ForumController.getAllForumOfUser(userID)
+        Forums = await ForumController.getAllForumOfUser(userID)
+      }
+      else
+      {
+        Forums = await ForumController.getAllClassForum(classID);
+      }
         Forums.map(async (f) => {
           let user = await UserController.getUser(f.userID);
           let body = document.querySelector("#forum-body");
@@ -201,47 +214,13 @@
           forumTimeStamp.textContent = time;
           console.log(f.title);
 
+          let forumCard = clone.querySelector('#forum-card')
+          forumCard.addEventListener('click', ()=>{
+            window.location.assign(`./forum_detail.html?forum_id=${f.forumID}`)
+          })
+
           body.appendChild(clone);
         })
       }
-      else
-      {
-        let Forums = await ForumController.getAllClassForum(classID);
-        Forums.forEach(async (f) => {
-          let user = await UserController.getUser(f.userID);
-          let body = document.querySelector("#forum-body");
-          let template = document.querySelector("#forum-card-template");
-
-          const clone = template.content.cloneNode(true);
-          const forumCreator = clone.querySelector("#forum-creator");
-          const forumTitle = clone.querySelector("#forum-title");
-          const forumTimeStamp = clone.querySelector("#forum-date");
-
-          var dateObj = new Date(f.date * 1000);
-          var year = dateObj.getFullYear();
-          var month = dateObj.toLocaleDateString(undefined, { month: "short" });
-          var date = dateObj.getDate();
-          var hour =
-            dateObj.getHours() < 10
-              ? "0" + dateObj.getHours()
-              : dateObj.getHours();
-          var min =
-            dateObj.getMinutes() < 10
-              ? "0" + dateObj.getMinutes()
-              : dateObj.getMinutes();
-          var time =
-            f.date.toDate().toDateString() +
-            ", " +
-            f.date.toDate().toLocaleTimeString("en-US");
-          forumCreator.textContent = user.name;
-          forumTitle.textContent = f.title;
-          forumTimeStamp.textContent = time;
-          console.log(f.title);
-
-          body.appendChild(clone);
-        });
-      };
-    }
-      
   </script>
 </html>

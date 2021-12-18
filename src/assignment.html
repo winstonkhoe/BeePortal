@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Forum</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Vendor JS Files -->
+    <script src="./assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="./assets/vendor/bootstrap/js/popper.js"></script>
+    <script src="./assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/classdetail.css" />
+
+        <!-- FONT AWESOME -->
+        <link
+        rel="stylesheet"
+        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous"
+      />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul id=navbar-list>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
+            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
+            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
+            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li>Assignment</li>
+          </ol>
+          <h2>Assignment</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page">
+
+        <div class="d-flex flex-column" data-aos="fade-up">
+          <header class="section-header d-flex justify-content-start ml-5">
+            <h2>Assignments</h2>
+          </header>
+          <div id="assignment-body" class="d-flex card w-100 justify-content-start">
+
+            <template id="assignment-template">
+
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" id="headingOne">
+                  <h5 class="mb-0">
+                    <button id="assignment-collapse-btn" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Collapsible Group Item #1
+                  </button>
+                </h5>
+                <h6 id="assignment-submission-date" class="p-0 m-0 d-inline-block"></h6>
+              </div>
+              
+              <div id="assignment-collapse-content" class="collapse mr-3 ml-3 mb-3" aria-labelledby="headingOne" data-parent="#assignment-body">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+                <div id="answer-input-body">
+
+                </div>
+                </div>
+              </div>
+            </div>
+
+          </template>
+
+          <template id="answer-input-template">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Answer</label>
+              <textarea class="form-control" id="assignment-content" rows="3"></textarea>
+            </div>
+            <a id="answerBtn" href="#" class="btn btn-primary">Save Answer</a>
+           </template>
+
+          </div>
+
+          <header class="section-header d-flex justify-content-start ml-5 mt-5">
+            <h2>Exam</h2>
+          </header>
+
+          <div id="forum-discuss-post-body" class="d-flex card w-100 justify-content-start">
+
+            <template id="forum-discuss-post-template">
+              <div class="d-flex ml-5 flex-row m-3">
+                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
+                  <div>
+                    <span id="forum-discuss-post-user-initial" class="w-48 avatar gd-warning">W</span>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-items-center"> 
+                  <p id="forum-discuss-post-user-name" class="p-0 m-0">Winston</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Discussion</label>
+                  <textarea class="form-control" id="discussion-post-content" rows="5" placeholder="Write anything you want to discuss about current thread"></textarea>
+                </div>
+                  <a id="discussBtn" href="#" class="btn btn-primary">Discuss</a>
+                </div>
+              </div>
+            </template>
+
+          </div>
+
+          <!-- Forum Discussion Template -->
+          <div id="forum-discussion-body" class="d-flex flex-column">
+            
+            <template id="forum-discussion-template">
+            <div class="d-flex card w-100 justify-content-start">
+              <div class="d-flex mr-3 mt-3 justify-content-end">
+                <p id="forum-discussion-date" class="p-0 m-0" style="font-size: smaller;">09 Dec 2021, 10:39 GMT+7</p>
+              </div>
+              <div class="d-flex ml-5 flex-row m-3 align-items-start">
+                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
+                  <div>
+                    <span id="forum-discussion-user-initial" class="w-48 avatar gd-warning">W</span>
+                  </div>
+                  <div class="d-flex flex-column justify-content-start align-items-center"> 
+                    <p id="forum-discussion-user-name" class="p-0 m-0">Winston</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p id="forum-discussion-content" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <div id="forum-discussion-reply-body" class="d-flex flex-column">
+                    
+                    
+                  </div>
+
+                  <div id="replyBtn" class="pe-auto"><i class="fas fa-reply"></i></div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <!-- END Forum Discussion Template -->
+
+          <!-- Forum Discussion Reply Template -->
+          <template id="forum-discussion-reply-template">
+            <div class="d-flex card w-100 justify-content-start">
+              <div class="d-flex mr-3 mt-3 justify-content-end">
+                <p id="forum-discussion-reply-date" class="p-0 m-0" style="font-size: smaller;">09 Dec 2021, 10:39 GMT+7</p>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
+                  <div>
+                    <span id="forum-discussion-reply-user-initial" class="w-48 avatar gd-warning">W</span>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-items-center"> 
+                    <p id="forum-discussion-reply-user-name" class="p-0 m-0">Winston</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p id="forum-discussion-reply-content" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+              </div>
+            </div>
+          </template>
+          <!-- END Forum Discussion Reply Template -->
+
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+    
+    var dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+    var timeOptions = { timeZone: 'Asia/Jakarta', timeZoneName: 'short', hour: '2-digit', minute:'2-digit' };
+    
+    window.onload = async () => {
+      let urlQuery = new URLSearchParams(window.location.search);
+      let classID = urlQuery.get("class_id");
+      let userID = localStorage.getItem("user_id");
+      let currUser = await UserController.getUser(userID)
+      let assignments = await AssignmentController.getAllClassAssignmentSorted(classID)
+      
+      console.log(currUser)
+      if(assignments !== null && assignments !== undefined && assignments.length > 0)
+      {
+        assignments.map((asg) => {
+          let body = document.getElementById('assignment-body')
+          let template = document.getElementById('assignment-template')
+          let clone = template.content.cloneNode(true)
+          let button = clone.querySelector('#assignment-collapse-btn')
+          button.setAttribute('data-target', `#${asg.assignmentID}`) 
+          button.setAttribute('aria-controls', `${asg.assignmentID}`) 
+          button.textContent = asg.title
+
+          let content = clone.querySelector('#assignment-collapse-content')
+          content.id = asg.assignmentID
+          
+          console.log(asg.submissionDate)
+          let submissionDate = asg.submissionDate.toDate()
+          let submissionDateTxt = clone.querySelector('#assignment-submission-date')
+          submissionDateTxt.textContent = submissionDate.toLocaleDateString('en-US', dateOptions) + ', ' + submissionDate.toLocaleTimeString('id-ID', timeOptions)
+
+          let contentText = content.querySelector('div')
+          contentText.textContent = asg.content
+
+          if(currUser.role == 'student')
+          {
+            let inputBody = clone.querySelector('#answer-input-body')
+            let inputTemplate = document.getElementById('answer-input-template')
+  
+            let inputClone = inputTemplate.content.cloneNode(true)
+  
+            let protestScoreBtn = inputClone.querySelector('#answerBtn')
+            protestScoreBtn.textContent = 'Protest Score'
+            let answerTxt = inputClone.querySelector('#assignment-content')
+            protestScoreBtn.addEventListener('click', async ()=>{
+              //Insert Protest Score
+              alert('Protest Score Successfully Submitted!')
+            })
+            inputBody.appendChild(protestScoreBtn)
+          }
+          else if(currUser.role == 'lecturer')
+          {
+            let inputBody = clone.querySelector('#answer-input-body')
+            let inputTemplate = document.getElementById('answer-input-template')
+            let inputClone = inputTemplate.content.cloneNode(true)
+            let inputScoreBtn = inputClone.querySelector('#answerBtn')
+            inputScoreBtn.textContent = 'Input Score'
+
+            inputScoreBtn.addEventListener('click', () => {
+              window.location.assign(`inputScore.html?assignment_id=${asg.assignmentID}`)
+            })
+            
+            inputBody.appendChild(inputScoreBtn)
+          }
+
+          body.appendChild(clone)
+        })
+      }
+      }
+
+
+  </script>
+</html>
