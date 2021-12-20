@@ -21,11 +21,12 @@ import { Class } from "./Class.js";
 import { User } from "./User.js";
 import { Assignment } from "./Assignment.js";
 import { Group } from "./Group.js";
+import { Exam } from "./Exam.js";
 
 export class Score {
   static _CollectionName = "Scores";
 
-  constructor(scoreID, classID, taskID, userID, score, finalize, type) {
+  constructor(scoreID, classID, taskID, userID, score, finalize, type, isCheating) {
     this.scoreID = scoreID;
     this.classID = classID;
     this.taskID = taskID;
@@ -33,6 +34,7 @@ export class Score {
     this.score = score;
     this.finalize = finalize;
     this.type = type;
+    this.isCheating = isCheating;
   }
 
   static async getTaskType(taskID) {
@@ -42,12 +44,6 @@ export class Score {
   }
 
   async insertScore() {
-    console.log(this.classID)
-    console.log(this.taskID)
-    console.log(this.userID)
-    console.log(this.score)
-    console.log(this.finalize)
-    console.log(this.type)
     try {
       const docIns = await addDoc(
         collection(BeeDatabase.getDatabase(), "Scores"),
@@ -63,13 +59,12 @@ export class Score {
       );
       return true;
     } catch (error) {
-      console.log(error);
       return false;
     }
   }
 
   static async setExistingScoreIsUpdated(taskID, userID) {
-    let list = this.getScoreDocument(taskID, userID, false)
+    let list = await this.getScoreDocument(taskID, userID, false)
 
     if (list.length > 0) {
       await updateDoc(
@@ -108,6 +103,50 @@ export class Score {
         }
       );
     }
+  }
+
+  static async checkReported(taskID, userID) {
+    let list = await this.getScoreDocument(taskID, userID, false)
+
+    console.log(list)
+    if(!list || list.length <= 0)
+    {
+      return false
+    }
+    return list[0].isCheating === true
+  }
+
+  static async reportCheating(taskID, userID) {
+    let list = await this.getScoreDocument(taskID, userID, false)
+    let exam = await Exam.getExam(taskID)
+    let docID = ''
+
+    if (list.length <= 0) {
+      try {
+        const docIns = await addDoc(
+          collection(BeeDatabase.getDatabase(), this._CollectionName),
+          {
+            classID: exam.classID,
+            taskID: taskID,
+            userID: userID,
+            score: 0,
+            finalize: false,
+            type: 'exam',
+            isUpdated: false,
+          }
+        );
+        docID = docIns.id
+      } catch (error) {
+      }
+    }
+    if (list.length > 0) docID = list[0].scoreID
+
+    await updateDoc(
+      doc(BeeDatabase.getDatabase(), this._CollectionName, docID),
+      {
+        isCheating: true
+      }
+    );
   }
 
   static async getScore(scoreID) {
@@ -156,7 +195,8 @@ const scoreConverter = {
       d.userID,
       d.score,
       d.finalize,
-      task
+      task,
+      d.isCheating
     );
   },
 };

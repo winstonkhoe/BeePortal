@@ -29,22 +29,10 @@ export class AssignmentController{
         return assignments
     }
 
-    static async getAllForumDiscussion(forumID)
-    {
-        return await ForumDiscussion.getAllForumDiscussion(forumID)
-    }
-
     static async insertAssignment(classID, title, content, submissionDate, group)
     {
         let asg = new Assignment(null, classID, title, content, submissionDate, group)
         let success = await asg.insertAssignment()
-        return success
-    }
-
-    static async insertForumDiscussion(forumID, content, userID)
-    {
-        let forumDiscussion = new ForumDiscussion(null, forumID, content, null, userID)
-        let success = await forumDiscussion.insertForumDiscussion()
         return success
     }
 

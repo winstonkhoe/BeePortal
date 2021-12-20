@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Forum</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/forum.css" />
+    <link rel="stylesheet" href="assets/css/util.css" />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul id="navbar-list"></ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <template id="nav-item-template">
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="course.html">Course</a></li>
+          </ol>
+          <h2>Manage Syllabus</h2>
+          <h5 id="manage-syllabus"></h5>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page counts">
+        <div class="container" data-aos="fade-up">
+          <!-- <form> -->
+          <div class="form-group">
+            <label for="exampleFormControlSelectCourse">Syllabus Fields</label>
+            <select class="form-control" id="syllabus-fields">
+              <option value="">None</option>
+              <option value="description">Course Description</option>
+              <option value="outcomes">Learning Outcomes</option>
+              <option value="strategies">Learning Strategies</option>
+              <option value="textbooks">Textbooks</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelectCourse">Modify Type</label>
+            <select class="form-control" id="syllabus-modify-type">
+            </select>
+          </div>
+          
+          <div id="input-body" class="form-group">
+          
+          </div>
+
+          <template id="input-template">
+              <label for="exampleFormControlSelectCourse">Update Content</label>
+              <input
+                type="name"
+                class="form-control"
+                id="syllabus-update-content"
+                placeholder="You will learn how to design website"
+              />
+          </template>
+
+          <div class="d-flex justify-content-center">
+            <a id="create-btn" href="#" class="btn btn-primary"
+              >Update Syllabus</a
+            >
+          </div>
+
+          <div class="form-group">
+            <p id="error-message" style="color: red"></p>
+          </div>
+          <!-- </form> -->
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    // FP -> Fetch Place
+    import { CourseController } from "./assets/js/controller/CourseController.js";
+    import { ClassController } from "./assets/js/controller/ClassController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+    import { SyllabusController } from "./assets/js/controller/SyllabusController.js";
+    import { ForumController } from "./assets/js/controller/ForumController.js";
+    import { ScheduleController } from "./assets/js/controller/ScheduleController.js";
+    import { getMultipleSelectValues, capitalizeFirstLetter, clearGroupList } from "./assets/js/utils.js";
+    import { initializeNavbar } from "./assets/js/navbar.js";
+
+    const syllabusFields = document.getElementById('syllabus-fields');
+    const syllabusModifyType = document.getElementById('syllabus-modify-type');
+    const updateContent = document.getElementById('syllabus-update-content')
+    const updateBtn = document.getElementById("create-btn");
+    const errorMessage = document.getElementById("error-message");
+    const manageSyllabusHeadline = document.getElementById('manage-syllabus')
+    const inputBody = document.getElementById('input-body')
+    const inputTemplate = document.getElementById('input-template')
+
+    window.onload = async () => {
+      let currUserID = localStorage.getItem("user_id");
+      let currUser = await UserController.getUser(currUserID);
+      initializeNavbar(currUser.role);
+
+      const urlQuery = new URLSearchParams(window.location.search);
+      const courseID = urlQuery.get("course_id");
+
+      let currCourse = await CourseController.getCourse(courseID)
+      manageSyllabusHeadline.textContent = `${courseID} - ${currCourse.name}`
+      let availableOptions = [{
+        field: ['description'],
+        modifications: ['Update']
+      },
+      {
+        field: ['outcomes', 'strategies', 'textbooks'],
+        modifications: ['Add', 'Remove']
+      },
+      ]
+
+      function showFields()
+      {
+        clearGroupList(inputBody)
+        if(['add','update'].indexOf(syllabusModifyType.value.toLowerCase()) >= 0)
+        {
+          let clone = inputTemplate.content.cloneNode(true)
+          let label = clone.querySelector('label')
+          label.textContent = `${capitalizeFirstLetter(syllabusModifyType.value)} Content`
+          inputBody.appendChild(clone)
+        }
+      }
+      
+      syllabusFields.addEventListener('change', () => {
+        clearGroupList(syllabusModifyType)
+        let selectedField = syllabusFields.value
+        if(selectedField != '')
+        {
+          availableOptions.map((availOpt) => {
+            if(availOpt.field.indexOf(selectedField.toLowerCase()) >= 0)
+            {
+              let options = availOpt.modifications
+              options.map((o) => {
+                let opt = document.createElement("option");
+                opt.value = o.toLowerCase();
+                opt.innerHTML = o;
+                syllabusModifyType.appendChild(opt);
+              })
+            }
+          })
+        }
+        showFields()
+      })
+
+      syllabusModifyType.addEventListener('change', () => {
+        showFields()
+      })
+
+      updateBtn.addEventListener("click", async () => {
+        let message = "";
+        if (
+          syllabusFields.value == "" || syllabusModifyType == "" || updateContent.value == ""
+        ) {
+          message = "Fields cannot be empty";
+        }
+        if (message == "") {
+          let success = await CourseController.insertCourse(
+            courseID.value,
+            courseName.value,
+            courseCredits.value
+          );
+          if(!success) message = "Failed Creating Course, try again!";
+        }
+        errorMessage.textContent = message;
+        //redirect to assign student & lecturer
+      });
+    };
+  </script>
+</html>

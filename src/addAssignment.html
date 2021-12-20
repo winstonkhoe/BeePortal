@@ -64,16 +64,13 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
-          </ul>
+          <ul id="navbar-list"></ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+        <template id="nav-item-template">
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
       </div>
     </header>
     <!-- End Header -->
@@ -119,11 +116,20 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect2">Submission Date</label>
-            <input type="datetime-local" class="form-control" id="assignment-submission-date" name="submission-date">
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="assignment-submission-date"
+              name="submission-date"
+            />
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect2">Class List</label>
-            <select multiple class="form-control" id="assignment-class-select"></select>
+            <select
+              multiple
+              class="form-control"
+              id="assignment-class-select"
+            ></select>
           </div>
           <div class="form-group ml-4">
             <input
@@ -150,6 +156,7 @@
                   multiple
                   class="form-control"
                   id="group-select-student"
+                  group=""
                 ></select>
                 <div
                   id="group-assign-btn"
@@ -206,22 +213,29 @@
     import { ForumController } from "./assets/js/controller/ForumController.js";
     import { UserController } from "./assets/js/controller/UserController.js";
     import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
-    import { getMultipleSelectValues } from "./assets/js/utils.js";
+    import { getMultipleSelectValues, clearGroupList } from "./assets/js/utils.js";
+    import { initializeNavbar } from "./assets/js/navbar.js";
 
     const courseSelectFP = document.getElementById("assignment-course-select");
     const classSelectFP = document.getElementById("assignment-class-select");
-    const assignmentSubmissionDateTxt = document.getElementById("assignment-submission-date");
+    const assignmentSubmissionDateTxt = document.getElementById(
+      "assignment-submission-date"
+    );
     const assignmentTitleTxt = document.getElementById("assignment-title");
     const assignmentContentTxt = document.getElementById("assignment-content");
-    const assignmentGroup = document.getElementById("assignment-group-checkbox");
+    const assignmentGroup = document.getElementById(
+      "assignment-group-checkbox"
+    );
     const saveAssignmentBtn = document.getElementById("save-assignment");
     const addAssignmentBtn = document.getElementById("add-assignment");
     const errorMessage = document.getElementById("error-message");
-    let assignmentListObj = []
+    let assignmentListObj = [];
 
     window.onload = async () => {
-      let userID = localStorage.getItem("user_id");
-      let courseList = await CourseController.getUniqueCourses(userID);
+      let currUserID = localStorage.getItem("user_id");
+      let currUser = await UserController.getUser(currUserID);
+      initializeNavbar(currUser.role);
+      let courseList = await CourseController.getUniqueCourses(currUserID);
 
       courseList.forEach((course) => {
         let opt = document.createElement("option");
@@ -248,20 +262,17 @@
         }
       });
 
-      function clearUnselectedOptions(selectStudent, selectedStudents)
-      {
-        let removingList = []
-          for(let i = 0; i < selectStudent.length; i++)
-          {
-            let s = selectStudent.options[i]
-            if(selectedStudents.indexOf(s.value) < 0)
-            {
-              removingList.push(s)
-            }
+      function clearUnselectedOptions(selectStudent, selectedStudents) {
+        let removingList = [];
+        for (let i = 0; i < selectStudent.length; i++) {
+          let s = selectStudent.options[i];
+          if (selectedStudents.indexOf(s.value) < 0) {
+            removingList.push(s);
           }
-          removingList.map((r)=>{
-            r.parentNode.removeChild(r)
-        })
+        }
+        removingList.map((r) => {
+          r.parentNode.removeChild(r);
+        });
       }
 
       function assignGroupFetch(
@@ -276,23 +287,24 @@
       ) {
         if (selectedStudents.length > 0) {
           selectedList.push(selectedStudents);
-          selectedList = selectedList.flat()
+          selectedList = selectedList.flat();
           let remainingStudents = allStudentList.filter(
-            (s) => !selectedList.includes(s.userID)
+            (s) => !selectedList.includes(s.currUserID)
           );
 
           if (remainingStudents.length > 0) {
             let clone = template.content.cloneNode(true);
             let groupNumber = clone.querySelector("#group-number");
             groupNumber.textContent = `${classCode} - Group ${groupCounter}`;
-            groupCounter += 1;
 
             let selectStudent = clone.querySelector("#group-select-student");
-            selectStudent.name = classID
+            selectStudent.setAttribute("aria-controls", groupCounter);
+
+            selectStudent.name = classID;
             let assignGroupBtn = clone.querySelector("#group-assign-btn");
             remainingStudents.map(async (s) => {
               let opt = document.createElement("option");
-              opt.value = s.userID;
+              opt.value = s.currUserID;
               opt.innerHTML = s.studentID + " - " + s.name;
               selectStudent.appendChild(opt);
             });
@@ -301,16 +313,21 @@
               let selectedS = [];
               selectedS = getMultipleSelectValues(selectStudent);
               if (selectedS.length > 0) {
-                assignGroupBtn.parentNode.removeChild(assignGroupBtn)
+                assignGroupBtn.parentNode.removeChild(assignGroupBtn);
 
-                let assignmentObject = assignmentListObj.filter(asgObj => {
-                                return asgObj.classID == selectStudent.name
-                              })
-                  
-                await AssignmentController.assignStudentGroup(assignmentObject[0].assignmentID, groupCounter, selectedStudents)
+                let assignmentObject = assignmentListObj.filter((asgObj) => {
+                  return asgObj.classID == selectStudent.name;
+                });
 
-                clearUnselectedOptions(selectStudent, selectedS)
+                await AssignmentController.assignStudentGroup(
+                  assignmentObject[0].assignmentID,
+                  groupCounter,
+                  selectedStudents
+                );
 
+                clearUnselectedOptions(selectStudent, selectedS);
+
+                groupCounter += 1;
                 assignGroupFetch(
                   classCode,
                   classID,
@@ -319,8 +336,8 @@
                   selectedS,
                   groupAssignBody,
                   templateGroupAssign,
-                  groupCounter);
-                
+                  groupCounter
+                );
               }
             });
             body.appendChild(clone);
@@ -328,11 +345,7 @@
         }
       }
 
-      function clearGroupList(selectedList, groupCounter, body) {
-        while (body.firstChild) {
-          body.firstChild.remove();
-        }
-      }
+      
 
       //Assign Group Logics
       const templateGroupAssign = document.getElementById(
@@ -350,21 +363,20 @@
               let groupCounter = 1;
               let clone = templateGroupAssign.content.cloneNode(true);
               let groupNumber = clone.querySelector("#group-number");
-              let currClass = await ClassController.getClass(c)
+              let currClass = await ClassController.getClass(c);
               groupNumber.textContent = `${currClass.classCode} - Group ${groupCounter}`;
-              groupCounter += 1;
               let allStudentList =
                 await ClassController.getAllStudentListByClass(c);
               let selectedList = [];
-              let selectStudent = clone.querySelector('#group-select-student')
-              selectStudent.name = currClass.classID
+              let selectStudent = clone.querySelector("#group-select-student");
+              selectStudent.name = currClass.classID;
 
               let assignGroupBtn = clone.querySelector("#group-assign-btn");
 
               if (allStudentList.length > 0) {
                 allStudentList.map((s) => {
                   let opt = document.createElement("option");
-                  opt.value = s.userID;
+                  opt.value = s.currUserID;
                   opt.innerHTML = s.studentID + " - " + s.name;
                   selectStudent.appendChild(opt);
                 });
@@ -374,20 +386,22 @@
                 let selectedStudents = [];
                 selectedStudents = getMultipleSelectValues(selectStudent);
 
-                if(selectedStudents.length > 0)
-                {
-                  assignGroupBtn.parentNode.removeChild(assignGroupBtn)
+                if (selectedStudents.length > 0) {
+                  assignGroupBtn.parentNode.removeChild(assignGroupBtn);
 
-                  let assignmentObject = assignmentListObj.filter(asgObj => {
-                                return asgObj.classID == selectStudent.name
-                              })
-                  
-                              console.log(assignmentObject)
-                              console.log(assignmentListObj)
-                  await AssignmentController.assignStudentGroup(assignmentObject[0].assignmentID, groupCounter, selectedStudents)
+                  let assignmentObject = assignmentListObj.filter((asgObj) => {
+                    return asgObj.classID == selectStudent.name;
+                  });
 
-                  clearUnselectedOptions(selectStudent, selectedStudents)
+                  await AssignmentController.assignStudentGroup(
+                    assignmentObject[0].assignmentID,
+                    groupCounter,
+                    selectedStudents
+                  );
 
+                  clearUnselectedOptions(selectStudent, selectedStudents);
+
+                  groupCounter += 1;
                   assignGroupFetch(
                     currClass.classCode,
                     currClass.classID,
@@ -403,38 +417,43 @@
 
               groupAssignBody.appendChild(clone);
             });
-          }
-          else
-          {
-
+          } else {
           }
         }
       });
 
-      saveAssignmentBtn.addEventListener('click', ()=>{
+      saveAssignmentBtn.addEventListener("click", () => {
         let message = "";
         let classList = [];
         classList = getMultipleSelectValues(classSelectFP);
-        if(assignmentTitleTxt.value == "" || assignmentContentTxt.value == "" || assignmentSubmissionDateTxt.value == "" || classList.length == 0)
-        {
+        if (
+          assignmentTitleTxt.value == "" ||
+          assignmentContentTxt.value == "" ||
+          assignmentSubmissionDateTxt.value == "" ||
+          classList.length == 0
+        ) {
           message = "Fields cannot be empty, and options should be picked";
         }
         errorMessage.textContent = message;
-        if(message == "")
-        {
-          classList.map(async(c) => {
-            let success = await AssignmentController.insertAssignment(c, assignmentTitleTxt.value, assignmentContentTxt.value, assignmentSubmissionDateTxt.value, assignmentGroup.checked)
-            console.log(success)
-            if(success !== false)
-            {
-              let asgObj = {assignmentID: success, classID: c}
-              assignmentListObj.push(asgObj)
+        if (message == "") {
+          classList.map(async (c) => {
+            let success = await AssignmentController.insertAssignment(
+              c,
+              assignmentTitleTxt.value,
+              assignmentContentTxt.value,
+              assignmentSubmissionDateTxt.value,
+              assignmentGroup.checked
+            );
+            console.log(success);
+            if (success !== false) {
+              let asgObj = { assignmentID: success, classID: c };
+              assignmentListObj.push(asgObj);
             }
-          })
+          });
         }
-      })
+      });
       addAssignmentBtn.addEventListener("click", () => {
-        history.go(-1)
+        history.go(-1);
       });
     };
   </script>

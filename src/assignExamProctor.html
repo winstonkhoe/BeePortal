@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Forum</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/util.css" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul id="navbar-list"></ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <template id="nav-item-template">
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="exam.html">Exam</a></li>
+          </ol>
+          <h2>Assign Exam Proctor</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page counts">
+        <div class="container" data-aos="fade-up">
+          <!-- <form> -->
+          <div class="form-group">
+            <label for="exampleFormControlSelectCourse">Proctor List</label>
+            <select class="form-control" id="proctor-select"></select>
+          </div>
+
+          <div class="form-group">
+            <input
+              id="assign-exam-proctor-btn"
+              type="submit"
+              value="Assign Exam Proctor"
+            />
+          </div>
+
+          <div class="form-group">
+            <p id="error-message" style="color: red"></p>
+          </div>
+          <!-- </form> -->
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    // FP -> Fetch Place
+    import { ExamController } from "./assets/js/controller/ExamController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+    import { CourseController } from "./assets/js/controller/CourseController.js";
+    import { ClassController } from "./assets/js/controller/ClassController.js";
+    import { ForumController } from "./assets/js/controller/ForumController.js";
+    import { ScheduleController } from "./assets/js/controller/ScheduleController.js";
+    import { getMultipleSelectValues } from "./assets/js/utils.js";
+    import { initializeNavbar } from "./assets/js/navbar.js";
+
+    const proctorSelect = document.getElementById("proctor-select");
+    const assignExamProctorBtn = document.getElementById("assign-exam-proctor-btn");
+    const errorMessage = document.getElementById("error-message");
+
+    window.onload = async () => {
+      let currUserID = localStorage.getItem("user_id");
+      let currUser = await UserController.getUser(currUserID);
+      initializeNavbar(currUser.role);
+
+      const urlQuery = new URLSearchParams(window.location.search);
+      let userID = localStorage.getItem("user_id");
+
+      let examID = urlQuery.get("exam_id");
+
+      let proctorList = await UserController.getAllProctors()
+
+      proctorList.map((proctor) => {
+        let opt = document.createElement("option");
+        opt.value = proctor.userID;
+        opt.innerHTML = proctor.lecturerID + ' - ' + proctor.name;
+        proctorSelect.appendChild(opt);
+      })
+
+      assignExamProctorBtn.addEventListener("click", async () => {
+        let message = "";
+        if (proctorSelect.value == "") {
+          message = "Fields cannot be empty, and options should be picked";
+        }
+
+        if (message == "") {
+          let success = await ExamController.assignProctor(
+            examID,
+            proctorSelect.value
+          );
+          if (success === false)
+            message = `Failed Assigning Exam Proctor try again!`;
+          else message = "Assign Exam is successful!";
+
+          alert(message);
+        }
+        errorMessage.textContent = message;
+      });
+    };
+  </script>
+</html>

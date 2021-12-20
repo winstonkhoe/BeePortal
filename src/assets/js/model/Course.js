@@ -6,6 +6,8 @@ import {
   getDocs,
   doc,
   deleteDoc,
+  setDoc,
+  updateDoc,
   getDoc,
   getFirestore,
   query,
@@ -23,14 +25,13 @@ export class Course {
     this.name = name;
     this.syllabusID = syllabusID;
     this.credits = credits;
+    this.collectionName = "Courses"
   }
 
   async insertCourse() {
     try {
-      await addDoc(
-        collection(BeeDatabase.getDatabase(), this._CollectionName),
+      await setDoc(doc(BeeDatabase.getDatabase(), this.collectionName, this.courseID),
         {
-          courseID: this.courseID,
           name: this.name,
           syllabusID: this.syllabusID,
           credits: this.credits,
@@ -48,9 +49,9 @@ export class Course {
 
   static async getCourse(courseID) {
     const data = await getDoc(
-      doc(BeeDatabase.getDatabase(), this._CollectionName, courseID)
+      doc(BeeDatabase.getDatabase(), this._CollectionName, courseID).withConverter(courseConverter)
     );
-    return this.convertToModel(data);
+    return data.data()
   }
 
   static async getAllCourses() {
@@ -97,10 +98,23 @@ export class Course {
       classList.map(async (c) => {
         let course = await this.getCourse(c.courseID.id);
         if (uniqueCourseList.indexOf(course) === -1) {
-          return course;
+          return course
         }
       })
     );
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    let unique = uniqueCourseList.filter(onlyUnique)
+    // uniqueCourseList.map((c) => {
+    //   if(unique.indexOf(c) < 0)
+    //   {
+    //     unique.push(c)
+    //   }
+    // })
+      console.log(unique)
+
     return uniqueCourseList;
   }
 

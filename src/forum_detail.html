@@ -39,13 +39,13 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/classdetail.css" />
 
-        <!-- FONT AWESOME -->
-        <link
-        rel="stylesheet"
-        href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-        crossorigin="anonymous"
-      />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
 
     <!-- =======================================================
   * Template Name: FlexStart - v1.9.0
@@ -72,16 +72,13 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
-          </ul>
+          <ul id="navbar-list"></ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+        <template id="nav-item-template">
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
       </div>
     </header>
     <!-- End Header -->
@@ -92,7 +89,7 @@
         <div class="container">
           <ol>
             <li><a href="home.html">Home</a></li>
-            <li>Forum Detail</li>
+            <li><a href="forum.html">Forum</a></li>
           </ol>
           <h2>Forum Detail</h2>
         </div>
@@ -100,121 +97,251 @@
       <!-- End Breadcrumbs -->
 
       <section class="inner-page">
-
         <div class="d-flex flex-column" data-aos="fade-up">
           <header class="section-header d-flex justify-content-start ml-5">
             <h2>Forum Thread</h2>
           </header>
-          <div id="forum-thread-body" class="d-flex card w-100 justify-content-start">
-
+          <div
+            id="forum-thread-body"
+            class="d-flex card w-100 justify-content-start"
+          >
             <template id="forum-thread-template">
-              <div class="d-flex mr-3 mt-3 justify-content-end">
-                <p id="forum-date" class="p-0 m-0" style="font-size: smaller;">09 Dec 2021, 10:39 GMT+7</p>
+              <div
+                id="edit-button-body"
+                class="d-flex flex-column mr-3 mt-3 align-items-end"
+              >
+                <p id="forum-date" class="p-0 m-0" style="font-size: smaller">
+                  09 Dec 2021, 10:39 GMT+7
+                </p>
               </div>
-              <div class="d-flex ml-5 flex-row m-3">
-                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
+              <div id="thread-content-body" class="d-flex ml-5 flex-row">
+                <div
+                  class="
+                    d-flex
+                    ml-3
+                    mr-3
+                    flex-column
+                    justify-content-center
+                    align-items-center
+                  "
+                >
                   <div>
-                    <span id="forum-user-initial" class="w-48 avatar gd-warning">W</span>
+                    <span id="forum-user-initial" class="w-48 avatar gd-warning"
+                      >W</span
+                    >
                   </div>
-                  <div class="d-flex flex-column justify-content-center align-items-center"> 
+                  <div
+                    class="
+                      d-flex
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
                     <p id="forum-user-name" class="p-0 m-0">Winston</p>
                   </div>
                 </div>
                 <div class="card-body">
-                  <h5 id="forum-title" class="card-title">Special title treatment</h5>
-                  <p id="forum-content" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <h5 id="forum-title" class="card-title">
+                    Special title treatment
+                  </h5>
+                  <p id="forum-content" class="card-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
                 </div>
               </div>
             </template>
-
           </div>
+
+          <template id="edit-button-template">
+            <i id="edit-forum-thread-btn" class="fas fa-edit mt-2"></i>
+            <i id="remove-forum-thread-btn" class="fas fa-trash mt-2"></i>
+          </template>
 
           <header class="section-header d-flex justify-content-start ml-5 mt-5">
             <h2>Forum Discussions</h2>
           </header>
 
-          <div id="forum-discuss-post-body" class="d-flex card w-100 justify-content-start">
-
+          <div
+            id="forum-discuss-post-body"
+            class="d-flex card w-100 justify-content-start"
+          >
             <template id="forum-discuss-post-template">
               <div class="d-flex ml-5 flex-row m-3">
-                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
+                <div
+                  class="
+                    d-flex
+                    ml-3
+                    mr-3
+                    flex-column
+                    justify-content-center
+                    align-items-center
+                  "
+                >
                   <div>
-                    <span id="forum-discuss-post-user-initial" class="w-48 avatar gd-warning">W</span>
+                    <span
+                      id="forum-discuss-post-user-initial"
+                      class="w-48 avatar gd-warning"
+                      >W</span
+                    >
                   </div>
-                  <div class="d-flex flex-column justify-content-center align-items-center"> 
-                  <p id="forum-discuss-post-user-name" class="p-0 m-0">Winston</p>
+                  <div
+                    class="
+                      d-flex
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
+                    <p id="forum-discuss-post-user-name" class="p-0 m-0">
+                      Winston
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Discussion</label>
-                  <textarea class="form-control" id="discussion-post-content" rows="5" placeholder="Write anything you want to discuss about current thread"></textarea>
-                </div>
-                  <a id="discussBtn" href="#" class="btn btn-primary">Discuss</a>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Discussion</label>
+                    <textarea
+                      class="form-control"
+                      id="discussion-post-content"
+                      rows="5"
+                      placeholder="Write anything you want to discuss about current thread"
+                    ></textarea>
+                  </div>
+                  <a id="discussBtn" href="#" class="btn btn-primary"
+                    >Discuss</a
+                  >
                 </div>
               </div>
             </template>
-
           </div>
 
           <!-- Forum Discussion Template -->
           <div id="forum-discussion-body" class="d-flex flex-column">
-            
             <template id="forum-discussion-template">
-            <div class="d-flex card w-100 justify-content-start">
-              <div class="d-flex mr-3 mt-3 justify-content-end">
-                <p id="forum-discussion-date" class="p-0 m-0" style="font-size: smaller;">09 Dec 2021, 10:39 GMT+7</p>
-              </div>
-              <div class="d-flex ml-5 flex-row m-3 align-items-start">
-                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
-                  <div>
-                    <span id="forum-discussion-user-initial" class="w-48 avatar gd-warning">W</span>
-                  </div>
-                  <div class="d-flex flex-column justify-content-start align-items-center"> 
-                    <p id="forum-discussion-user-name" class="p-0 m-0">Winston</p>
-                  </div>
+              <div class="d-flex card w-100 justify-content-start">
+                <div
+                  id="edit-button-body"
+                  class="d-flex flex-column mr-3 mt-3 align-items-end"
+                >
+                  <p
+                    id="forum-discussion-date"
+                    class="p-0 m-0"
+                    style="font-size: smaller"
+                  >
+                    09 Dec 2021, 10:39 GMT+7
+                  </p>
                 </div>
-                <div class="card-body">
-                  <p id="forum-discussion-content" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <div id="forum-discussion-reply-body" class="d-flex flex-column">
-                    
-                    
+                <div class="d-flex ml-5 flex-row m-3 align-items-start">
+                  <div
+                    class="
+                      d-flex
+                      ml-3
+                      mr-3
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
+                    <div>
+                      <span
+                        id="forum-discussion-user-initial"
+                        class="w-48 avatar gd-warning"
+                        >W</span
+                      >
+                    </div>
+                    <div
+                      class="
+                        d-flex
+                        flex-column
+                        justify-content-start
+                        align-items-center
+                      "
+                    >
+                      <p id="forum-discussion-user-name" class="p-0 m-0">
+                        Winston
+                      </p>
+                    </div>
                   </div>
+                  <div class="card-body">
+                    <div id="forum-discussion-content-body">
+                      <p id="forum-discussion-content" class="card-text">
+                        With supporting text below as a natural lead-in to
+                        additional content.
+                      </p>
+                    </div>
+                    <div
+                      id="forum-discussion-reply-body"
+                      class="d-flex flex-column"
+                    ></div>
 
-                  <div id="replyBtn" class="pe-auto"><i class="fas fa-reply"></i></div>
-                </div>
-              </div>
-            </div>
-          </template>
-          <!-- END Forum Discussion Template -->
-
-          <!-- Forum Discussion Reply Template -->
-          <template id="forum-discussion-reply-template">
-            <div class="d-flex card w-100 justify-content-start">
-              <div class="d-flex mr-3 mt-3 justify-content-end">
-                <p id="forum-discussion-reply-date" class="p-0 m-0" style="font-size: smaller;">09 Dec 2021, 10:39 GMT+7</p>
-              </div>
-              <div class="d-flex flex-row">
-                <div class="d-flex ml-3 mr-3 flex-column justify-content-center align-items-center">
-                  <div>
-                    <span id="forum-discussion-reply-user-initial" class="w-48 avatar gd-warning">W</span>
-                  </div>
-                  <div class="d-flex flex-column justify-content-center align-items-center"> 
-                    <p id="forum-discussion-reply-user-name" class="p-0 m-0">Winston</p>
+                    <div id="replyBtn" class="pe-auto">
+                      <i class="fas fa-reply"></i>
+                    </div>
                   </div>
                 </div>
-                <div class="card-body">
-                  <p id="forum-discussion-reply-content" class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              </div>
+            </template>
+            <!-- END Forum Discussion Template -->
+
+            <!-- Forum Discussion Reply Template -->
+            <template id="forum-discussion-reply-template">
+              <div class="d-flex card w-100 justify-content-start">
+                <div id="edit-button-body" class="d-flex flex-column mr-3 mt-3 align-items-end">
+                  <p
+                    id="forum-discussion-reply-date"
+                    class="p-0 m-0"
+                    style="font-size: smaller"
+                  >
+                    09 Dec 2021, 10:39 GMT+7
+                  </p>
+                </div>
+                <div class="d-flex flex-row">
+                  <div
+                    class="
+                      d-flex
+                      ml-3
+                      mr-3
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
+                    <div>
+                      <span
+                        id="forum-discussion-reply-user-initial"
+                        class="w-48 avatar gd-warning"
+                        >W</span
+                      >
+                    </div>
+                    <div
+                      class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                      "
+                    >
+                      <p id="forum-discussion-reply-user-name" class="p-0 m-0">
+                        Winston
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div id="forum-discussion-content-body">
+                      <p id="forum-discussion-reply-content" class="card-text">
+                        With supporting text below as a natural lead-in to
+                        additional content.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </template>
-          <!-- END Forum Discussion Reply Template -->
-
+            </template>
+            <!-- END Forum Discussion Reply Template -->
           </div>
-
         </div>
-
       </section>
     </main>
     <!-- End #main -->
@@ -248,212 +375,408 @@
   <script type="module">
     import { ForumController } from "./assets/js/controller/ForumController.js";
     import { UserController } from "./assets/js/controller/UserController.js";
-    
-    var dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-    var timeOptions = { timeZone: 'Asia/Jakarta', timeZoneName: 'short', hour: '2-digit', minute:'2-digit' };
-    
+    import { initializeNavbar } from "./assets/js/navbar.js";
+    import { clearGroupList } from "./assets/js/utils.js";
+
+    var dateOptions = { year: "numeric", month: "short", day: "numeric" };
+    var timeOptions = {
+      timeZone: "Asia/Jakarta",
+      timeZoneName: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+
     window.onload = async () => {
+      let currUserID = localStorage.getItem("user_id");
+      let currUser = await UserController.getUser(currUserID);
+      initializeNavbar(currUser.role);
+
       let urlQuery = new URLSearchParams(window.location.search);
       let forumID = urlQuery.get("forum_id");
-      let forumThread = await ForumController.getForum(forumID)
-      
-      let forumThreadBody = document.querySelector('#forum-thread-body')
-      let forumThreadTemplate = document.getElementById('forum-thread-template')
-      let forumThreadClone = forumThreadTemplate.content.cloneNode(true)
+      let forumThread = await ForumController.getForum(forumID);
 
-      let forumThreadTitle = forumThreadClone.querySelector('#forum-title')
-      forumThreadTitle.textContent = forumThread.title
-      
-      let forumThreadContent = forumThreadClone.querySelector('#forum-content')
-      forumThreadContent.textContent = forumThread.content
-      
-      let forumThreadDate = forumThreadClone.querySelector('#forum-date')
-      let FTdate = forumThread.date.toDate()
-      forumThreadDate.textContent = FTdate.toLocaleDateString('en-US', dateOptions) + ', ' + FTdate.toLocaleTimeString('id-ID', timeOptions)
-      
-      let user = await UserController.getUser(forumThread.userID)
-      let forumThreadInitial = forumThreadClone.querySelector('#forum-user-initial')
-      forumThreadInitial.textContent = user.name[0].toUpperCase()
-      
-      let forumThreadName = forumThreadClone.querySelector('#forum-user-name')
-      forumThreadName.textContent = user.name
-      
-      forumThreadBody.appendChild(forumThreadClone)
-      
+      let editButtonsTemplate = document.getElementById("edit-button-template");
 
-      //Forum Post
-      let currUserID = localStorage.getItem('user_id')
-      let currUser = await UserController.getUser(currUserID)
-      let postBody = document.querySelector('#forum-discuss-post-body')
-      let postTemplate = document.getElementById('forum-discuss-post-template')
-      let postClone = postTemplate.content.cloneNode(true)
+      let forumThreadBody = document.querySelector("#forum-thread-body");
+      let forumThreadTemplate = document.getElementById(
+        "forum-thread-template"
+      );
+      let forumThreadClone = forumThreadTemplate.content.cloneNode(true);
 
-      let postInitial = postClone.querySelector('#forum-discuss-post-user-initial')
-      postInitial.textContent = currUser.name[0].toUpperCase()
+      let forumThreadTitle = forumThreadClone.querySelector("#forum-title");
+      forumThreadTitle.textContent = forumThread.title;
 
-      let postName = postClone.querySelector('#forum-discuss-post-user-name')
-      postName.textContent = currUser.name
+      let forumThreadContent = forumThreadClone.querySelector("#forum-content");
+      forumThreadContent.textContent = forumThread.content;
 
-      const postContent = postClone.querySelector('#discussion-post-content')
+      let forumThreadDate = forumThreadClone.querySelector("#forum-date");
+      let FTdate = forumThread.date.toDate();
+      forumThreadDate.textContent =
+        FTdate.toLocaleDateString("en-US", dateOptions) +
+        ", " +
+        FTdate.toLocaleTimeString("id-ID", timeOptions);
 
-      let postBtn = postClone.querySelector('#discussBtn')
-      postBtn.addEventListener('click', async () => {
-        if(postContent.value.trim() != "")
-        {
-          let success = false
-          success = await ForumController.insertForumDiscussion(forumID, postContent.value, currUserID)
-          if(success === true)
-          {
-            window.location.reload()
-            return false
-          }
-          else
-          {
-            alert('Failed to Post Discussion')
-          }
-        }
-      })
+      let user = await UserController.getUser(forumThread.userID);
+      let forumThreadInitial = forumThreadClone.querySelector(
+        "#forum-user-initial"
+      );
+      forumThreadInitial.textContent = user.name[0].toUpperCase();
 
-      postBody.appendChild(postClone)
-      
-      
-      //Forum Discussions
-      let forumDiscussions = await ForumController.getAllForumDiscussion(forumID)
-      
-      forumDiscussions.map( async (fd) => {
-        let fdBody = document.querySelector('#forum-discussion-body')
-        let fdTemplate = document.getElementById('forum-discussion-template')
-        let fdClone = fdTemplate.content.cloneNode(true)
+      let forumThreadName = forumThreadClone.querySelector("#forum-user-name");
+      forumThreadName.textContent = user.name;
 
-        let fdContent = fdClone.querySelector('#forum-discussion-content')
-        fdContent.textContent = fd.content
-        
-        let fdDate = fdClone.querySelector('#forum-discussion-date')
-        let FDdate = fd.date.toDate()
-        fdDate.textContent = FDdate.toLocaleDateString('en-US', dateOptions) + ', ' + FDdate.toLocaleTimeString('id-ID', timeOptions)
-        
-        let user = await UserController.getUser(fd.userID)
-        let fdInitial = fdClone.querySelector('#forum-discussion-user-initial')
-        fdInitial.textContent = user.name[0].toUpperCase()
-        
-        let fdName = fdClone.querySelector('#forum-discussion-user-name')
-        fdName.textContent = user.name
-        
-        let fdReplyBtn = fdClone.querySelector('#replyBtn')
-        let fdrBody = fdClone.querySelector('#forum-discussion-reply-body') //Forum Discussion Reply Body
+      if (user.userID == currUserID) {
+        let editButtonsBody =
+          forumThreadClone.querySelector("#edit-button-body");
+        let editButtonsClone = editButtonsTemplate.content.cloneNode(true);
 
-        fdReplyBtn.addEventListener('click', ()=>{
-          let postTemplate = document.getElementById('forum-discuss-post-template')
-          let postClone = postTemplate.content.cloneNode(true)
+        let editThreadBtn = editButtonsClone.querySelector(
+          "#edit-forum-thread-btn"
+        );
+        let removeThreadBtn = editButtonsClone.querySelector(
+          "#remove-forum-thread-btn"
+        );
 
-          let postInitial = postClone.querySelector('#forum-discuss-post-user-initial')
-          postInitial.textContent = currUser.name[0].toUpperCase()
+        let threadContentBody = forumThreadClone.querySelector(
+          "#thread-content-body"
+        );
+        editThreadBtn.addEventListener("click", () => {
+          clearGroupList(threadContentBody);
+          let postTemplate = document.getElementById(
+            "forum-discuss-post-template"
+          );
+          let postClone = postTemplate.content.cloneNode(true);
 
-          let postName = postClone.querySelector('#forum-discuss-post-user-name')
-          postName.textContent = currUser.name
+          let postInitial = postClone.querySelector(
+            "#forum-discuss-post-user-initial"
+          );
+          postInitial.textContent = user.name[0].toUpperCase();
 
-          const postContent = postClone.querySelector('#discussion-post-content')
+          let postName = postClone.querySelector(
+            "#forum-discuss-post-user-name"
+          );
+          postName.textContent = user.name;
 
-          let postBtn = postClone.querySelector('#discussBtn')
-          postBtn.addEventListener('click', async () => {
-            if(postContent.value.trim() != "")
-            {
-              let success = false
-              success = await ForumController.insertForumDiscussion(fd.forumDiscussionID, postContent.value, currUserID)
-              if(success === true)
-              {
-                window.location.reload()
-                return false
-              }
-              else
-              {
-                alert('Failed to Post Discussion')
+          let updateTextArea = postClone.querySelector("textarea");
+          updateTextArea.value = forumThread.content;
+
+          let updateBtn = postClone.querySelector("#discussBtn");
+          updateBtn.textContent = "Update";
+          updateBtn.addEventListener("click", async () => {
+            if (updateTextArea.value.trim() != "") {
+              let success = false;
+              success = await ForumController.updateForum(
+                forumID,
+                updateTextArea.value
+              );
+              if (success === true) {
+                window.location.reload();
+                return false;
+              } else {
+                alert("Failed to Update Forum Thread");
               }
             }
-          })
+          });
 
-          fdrBody.appendChild(postClone)
-        })
+          threadContentBody.appendChild(postClone);
+        });
 
-        let forumDiscussionReplies = []
-        forumDiscussionReplies = await ForumController.getAllForumDiscussion(fd.forumDiscussionID)
-        if(forumDiscussionReplies.length > 0)
-        {
-          forumDiscussionReplies.map( async (fdr) => {
-            let fdrTemplate = document.getElementById('forum-discussion-reply-template')
-            let fdrClone = fdrTemplate.content.cloneNode(true)
+        removeThreadBtn.addEventListener("click", async () => {
+          let success = await ForumController.removeForum(forumID);
+          if (success === false) alert("Failed to Remove Forum Thread");
+        });
 
-            let fdrContent = fdrClone.querySelector('#forum-discussion-reply-content')
-            fdrContent.textContent = fdr.content
+        editButtonsBody.appendChild(editButtonsClone);
+      }
+      forumThreadBody.appendChild(forumThreadClone);
+
+      //Forum Post
+      let postBody = document.querySelector("#forum-discuss-post-body");
+      let postTemplate = document.getElementById("forum-discuss-post-template");
+      let postClone = postTemplate.content.cloneNode(true);
+
+      let postInitial = postClone.querySelector(
+        "#forum-discuss-post-user-initial"
+      );
+      postInitial.textContent = currUser.name[0].toUpperCase();
+
+      let postName = postClone.querySelector("#forum-discuss-post-user-name");
+      postName.textContent = currUser.name;
+
+      const postContent = postClone.querySelector("#discussion-post-content");
+
+      let postBtn = postClone.querySelector("#discussBtn");
+      postBtn.addEventListener("click", async () => {
+        if (postContent.value.trim() != "") {
+          let success = false;
+          success = await ForumController.insertForumDiscussion(
+            forumID,
+            postContent.value,
+            currUserID
+          );
+          if (success === true) {
+            window.location.reload();
+            return false;
+          } else {
+            alert("Failed to Post Discussion");
+          }
+        }
+      });
+
+      postBody.appendChild(postClone);
+
+      //Forum Discussions
+      let forumDiscussions = await ForumController.getAllForumDiscussion(
+        forumID
+      );
+
+      forumDiscussions.map(async (fd) => {
+        let fdBody = document.querySelector("#forum-discussion-body");
+        let fdTemplate = document.getElementById("forum-discussion-template");
+        let fdClone = fdTemplate.content.cloneNode(true);
+
+        let fdContent = fdClone.querySelector("#forum-discussion-content");
+        fdContent.textContent = fd.content;
+
+        let fdDate = fdClone.querySelector("#forum-discussion-date");
+        let FDdate = fd.date.toDate();
+        fdDate.textContent =
+          FDdate.toLocaleDateString("en-US", dateOptions) +
+          ", " +
+          FDdate.toLocaleTimeString("id-ID", timeOptions);
+
+        let user = await UserController.getUser(fd.userID);
+        let fdInitial = fdClone.querySelector("#forum-discussion-user-initial");
+        fdInitial.textContent = user.name[0].toUpperCase();
+
+        let fdName = fdClone.querySelector("#forum-discussion-user-name");
+        fdName.textContent = user.name;
+
+        let fdReplyBtn = fdClone.querySelector("#replyBtn");
+        let fdrBody = fdClone.querySelector("#forum-discussion-reply-body"); //Forum Discussion Reply Body
+
+        let editFdBtnBody = fdClone.querySelector(
+          "#forum-discussion-content-body"
+        );
+
+        if (user.userID == currUserID) {
+          let editButtonsBody = fdClone.querySelector("#edit-button-body");
+          let editButtonsClone = editButtonsTemplate.content.cloneNode(true);
+
+          let editThreadBtn = editButtonsClone.querySelector(
+            "#edit-forum-thread-btn"
+          );
+          let removeThreadBtn = editButtonsClone.querySelector(
+            "#remove-forum-thread-btn"
+          );
+
+          editThreadBtn.addEventListener("click", async () => {
+            clearGroupList(editFdBtnBody);
+
+            let postTemplate = document.getElementById(
+              "forum-discuss-post-template"
+            );
+            let postClone = postTemplate.content.cloneNode(true);
+
+            let postInitial = postClone.querySelector(
+              "#forum-discuss-post-user-initial"
+            );
+            postInitial.textContent = user.name[0].toUpperCase();
+
+            let postName = postClone.querySelector(
+              "#forum-discuss-post-user-name"
+            );
+            postName.textContent = user.name;
+
+            let updateTextArea = postClone.querySelector("textarea");
+            updateTextArea.value = fd.content;
+
+            let updateBtn = postClone.querySelector("#discussBtn");
+            updateBtn.textContent = "Update";
+            updateBtn.addEventListener("click", async () => {
+              if (updateTextArea.value.trim() != "") {
+                let success = false;
+                success = await ForumController.updateForumDiscussion(
+                  fd.forumDiscussionID,
+                  updateTextArea.value
+                );
+                if (success === true) {
+                  window.location.reload();
+                  return false;
+                } else {
+                  alert("Failed to Update Forum Discussion");
+                }
+              }
+            });
+            editFdBtnBody.appendChild(postClone);
+          });
+
+          removeThreadBtn.addEventListener("click", async () => {
+            let accept = confirm(
+              "Are you sure you want to remove this forum discussion?"
+            );
+            if (accept) {
+              let success = await ForumController.removeForumDiscussion(fd.forumDiscussionID);
+              if (success === false) alert("Failed to Remove Forum Discussion");
+            }
+          });
+
+          editButtonsBody.appendChild(editButtonsClone);
+        }
+        fdReplyBtn.addEventListener("click", () => {
+          let postTemplate = document.getElementById(
+            "forum-discuss-post-template"
+          );
+          let postClone = postTemplate.content.cloneNode(true);
+
+          let postInitial = postClone.querySelector(
+            "#forum-discuss-post-user-initial"
+          );
+          postInitial.textContent = currUser.name[0].toUpperCase();
+
+          let postName = postClone.querySelector(
+            "#forum-discuss-post-user-name"
+          );
+          postName.textContent = currUser.name;
+
+          const postContent = postClone.querySelector(
+            "#discussion-post-content"
+          );
+
+          let postBtn = postClone.querySelector("#discussBtn");
+          postBtn.addEventListener("click", async () => {
+            if (postContent.value.trim() != "") {
+              let success = false;
+              success = await ForumController.insertForumDiscussion(
+                fd.forumDiscussionID,
+                postContent.value,
+                currUserID
+              );
+              if (success === true) {
+                window.location.reload();
+                return false;
+              } else {
+                alert("Failed to Post Discussion");
+              }
+            }
+          });
+
+          fdrBody.appendChild(postClone);
+        });
+
+        let forumDiscussionReplies = [];
+        forumDiscussionReplies = await ForumController.getAllForumDiscussion(
+          fd.forumDiscussionID
+        );
+        if (forumDiscussionReplies.length > 0) {
+          forumDiscussionReplies.map(async (fdr) => {
+            let fdrTemplate = document.getElementById(
+              "forum-discussion-reply-template"
+            );
+            let fdrClone = fdrTemplate.content.cloneNode(true);
+
+            let fdrContent = fdrClone.querySelector(
+              "#forum-discussion-reply-content"
+            );
+            fdrContent.textContent = fdr.content;
+
+            let fdrDate = fdrClone.querySelector(
+              "#forum-discussion-reply-date"
+            );
+            let fdrdate = fdr.date.toDate();
+            fdrDate.textContent =
+              fdrdate.toLocaleDateString("en-US", dateOptions) +
+              ", " +
+              fdrdate.toLocaleTimeString("id-ID", timeOptions);
+
+            let user = await UserController.getUser(fdr.userID);
+            let fdrInitial = fdrClone.querySelector(
+              "#forum-discussion-reply-user-initial"
+            );
+            fdrInitial.textContent = user.name[0].toUpperCase();
             
-            let fdrDate = fdrClone.querySelector('#forum-discussion-reply-date')
-            let fdrdate = fdr.date.toDate()
-            fdrDate.textContent = fdrdate.toLocaleDateString('en-US', dateOptions) + ', ' + fdrdate.toLocaleTimeString('id-ID', timeOptions)
-            
-            let user = await UserController.getUser(fdr.userID)
-            let fdrInitial = fdrClone.querySelector('#forum-discussion-reply-user-initial')
-            fdrInitial.textContent = user.name[0].toUpperCase()
-            
-            let fdrName = fdrClone.querySelector('#forum-discussion-reply-user-name')
-            fdrName.textContent = user.name
 
-            fdrBody.appendChild(fdrClone)
-          })
+            let fdrName = fdrClone.querySelector(
+              "#forum-discussion-reply-user-name"
+            );
+            fdrName.textContent = user.name;
+
+            let editFdBtnBody = fdrClone.querySelector(
+              "#forum-discussion-content-body"
+            );
+            if (user.userID == currUserID) {
+          let editButtonsBody = fdrClone.querySelector("#edit-button-body");
+          let editButtonsClone = editButtonsTemplate.content.cloneNode(true);
+
+          let editThreadBtn = editButtonsClone.querySelector(
+            "#edit-forum-thread-btn"
+          );
+          let removeThreadBtn = editButtonsClone.querySelector(
+            "#remove-forum-thread-btn"
+          );
+
+          editThreadBtn.addEventListener("click", async () => {
+            clearGroupList(editFdBtnBody);
+
+            let postTemplate = document.getElementById(
+              "forum-discuss-post-template"
+            );
+            let postClone = postTemplate.content.cloneNode(true);
+
+            let postInitial = postClone.querySelector(
+              "#forum-discuss-post-user-initial"
+            );
+            postInitial.textContent = user.name[0].toUpperCase();
+
+            postInitial.par
+
+            let postName = postClone.querySelector(
+              "#forum-discuss-post-user-name"
+            );
+            postName.textContent = user.name;
+
+            let updateTextArea = postClone.querySelector("textarea");
+            updateTextArea.value = fdr.content;
+
+            let updateBtn = postClone.querySelector("#discussBtn");
+            updateBtn.textContent = "Update";
+            updateBtn.addEventListener("click", async () => {
+              if (updateTextArea.value.trim() != "") {
+                let success = false;
+                success = await ForumController.updateForumDiscussion(
+                  fdr.forumDiscussionID,
+                  updateTextArea.value
+                );
+                if (success === true) {
+                  window.location.reload();
+                  return false;
+                } else {
+                  alert("Failed to Update Forum Discussion");
+                }
+              }
+            });
+            editFdBtnBody.appendChild(postClone);
+          });
+
+          removeThreadBtn.addEventListener("click", async () => {
+            let accept = confirm(
+              "Are you sure you want to remove this forum discussion?"
+            );
+            if (accept) {
+              let success = await ForumController.removeForumDiscussion(fdr.forumDiscussionID);
+              if (success === false) alert("Failed to Remove Forum Discussion");
+            }
+          });
+
+          editButtonsBody.appendChild(editButtonsClone);
         }
 
-        fdBody.appendChild(fdClone)
+            fdrBody.appendChild(fdrClone);
+          });
+        }
 
-      })
-
-      // if(classID === null || typeof classID === 'undefined')
-      // {
-      //   let userID = localStorage.getItem('user_id')
-      //   Forums = await ForumController.getAllForumOfUser(userID)
-      // }
-      // else
-      // {
-      //   Forums = await ForumController.getAllClassForum(classID);
-      // }
-      //   Forums.map(async (f) => {
-      //     let user = await UserController.getUser(f.userID);
-      //     let body = document.querySelector("#forum-body");
-      //     let template = document.querySelector("#forum-card-template");
-
-      //     const clone = template.content.cloneNode(true);
-      //     const forumCreator = clone.querySelector("#forum-creator");
-      //     const forumTitle = clone.querySelector("#forum-title");
-      //     const forumTimeStamp = clone.querySelector("#forum-date");
-
-      //     var dateObj = new Date(f.date * 1000);
-      //     var year = dateObj.getFullYear();
-      //     var month = dateObj.toLocaleDateString(undefined, { month: "short" });
-      //     var date = dateObj.getDate();
-      //     var hour =
-      //       dateObj.getHours() < 10
-      //         ? "0" + dateObj.getHours()
-      //         : dateObj.getHours();
-      //     var min =
-      //       dateObj.getMinutes() < 10
-      //         ? "0" + dateObj.getMinutes()
-      //         : dateObj.getMinutes();
-      //     var time =
-      //       f.date.toDate().toDateString() +
-      //       ", " +
-      //       f.date.toDate().toLocaleTimeString("en-US");
-      //     forumCreator.textContent = user.name;
-      //     forumTitle.textContent = f.title;
-      //     forumTimeStamp.textContent = time;
-      //     console.log(f.title);
-
-      //     let forumCard = clone.querySelector('#forum-card')
-      //     forumCard.addEventListener('click', ()=>{
-      //       window.location.assign(`./forum_detail.html?forum_id=${f.forumID}`)
-      //     })
-
-      //     body.appendChild(clone);
-      //   })
-      }
-
-
+        fdBody.appendChild(fdClone);
+      });
+    };
   </script>
 </html>

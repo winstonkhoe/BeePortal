@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Exam</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <script src="./assets/vendor/qrcode/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/util.css" />
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+      <div
+        class="
+          container-fluid container-xl
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a href="home.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span>BeePortal</span>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul id="navbar-list"></ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <template id="nav-item-template">
+          <li><a class="nav-link scrollto" href=""></a></li>
+        </template>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="home.html">Home</a></li>
+            <li>Exam</li>
+          </ol>
+          <h2>Exam</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page counts">
+        <div class="container" data-aos="fade-up">
+          <div class="d-flex flex-col">
+            <div id="assign-exam-btn-body">
+              <template id="assign-exam-btn-template">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                  <a href="#">
+                    <label class="btn btn-secondary active">
+                      Assign Exam
+                    </label>
+                  </a>
+                </div>
+              </template>
+            </div>
+
+            <div
+              id="exam-body"
+              class="d-flex flex-row mb-4 align-content-stretch flex-wrap"
+            >
+            <div id="qrcode"></div>
+              <template id="class-card-template">
+                <div
+                  id="card-container"
+                  class="card mr-3 mb-3"
+                  style="width: 18rem"
+                >
+                  <div class="card-body">
+                    <h5 id="class-course-name" class="card-title">
+                      Card title
+                    </h5>
+                    <h6 id="class-code" class="card-subtitle mb-2 text-muted">
+                      Card subtitle
+                    </h6>
+                    <p id="exam-schedule-start" class="card-text">2020</p>
+                    <p id="exam-schedule-end" class="card-text">2020</p>
+                    <div
+                      id="exam-proctor-body"
+                      class="d-flex flex-column w-100 justify-content-start"
+                    ></div>
+
+                    <!-- <a href="#" class="card-link">Card link</a> -->
+                    <!-- <a id="forum-link" href="#" class="card-link" -->
+                    <!-- ><i class="fas fa-comment-alt"></i -->
+                    <!-- ></a> -->
+                  </div>
+                </div>
+              </template>
+              <template id="exam-proctor-template">
+                <div class="d-flex mb-2 align-items-center">
+                  <i class="fas fa-user-alt"></i>
+                  <p class="p-0 ml-3 mb-0 mr-0 mt-0">D424 - Winston</p>
+                </div>
+              </template>
+              <template id="exam-proctor-btn-template">
+                <a id="assignProctor" href="#" class="btn btn-primary"
+                  >Assign Exam Proctor</a
+                >
+              </template>
+            </div>
+          </div>
+
+          <!-- <template id="forum-card-template">
+            <div id="card-container" class="p-5 col-md-4 col-lg-4">
+              <div class="count-box hov-pointer">
+                <div>
+                  <h5 class="font-weight-bold" id="class-course"></h5>
+                  <p id="class-code"></p>
+                </div>
+              </div>
+            </div>
+          </template> -->
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="credits">BeePortal by WO</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/home.js"></script>
+  </body>
+  <script type="module">
+    import { ClassController } from "./assets/js/controller/ClassController.js";
+    import { ExamController } from "./assets/js/controller/ExamController.js";
+    import { CourseController } from "./assets/js/controller/CourseController.js";
+    import { UserController } from "./assets/js/controller/UserController.js";
+    import { initializeNavbar } from "./assets/js/navbar.js";
+    import { capitalizeFirstLetter, dateTimeToString } from './assets/js/utils.js'
+    
+    // import { jsPDF } from "jspdf";
+
+
+
+    let userID = localStorage.getItem("user_id");
+
+    window.onload = async () => {
+      // Default export is a4 paper, portrait, using millimeters for units
+
+      var qrcode = new QRCode("qrcode");
+      qrcode.makeCode('https://www.apple.com/')
+      let currUser = await UserController.getUser(userID);
+      initializeNavbar(currUser.role);
+// Default export is a4 paper, portrait, using millimeters for units
+const doc = new jsPDF();
+
+doc.text("Hello world!", 10, 10);
+doc.save("a4.pdf");
+      if (currUser.role == "administrative department") {
+        let body = document.querySelector("#assign-exam-btn-body");
+        let template = document.querySelector("#assign-exam-btn-template");
+        let clone = template.content.cloneNode(true);
+        let a = clone.querySelector('a')
+        a.href = `./assignExam.html`
+        body.appendChild(clone);
+      }
+      
+      if (currUser.role == "lecturer" && !currUser.isProctor) {
+        let body = document.querySelector("#assign-exam-btn-body");
+        let template = document.querySelector("#assign-exam-btn-template");
+        let clone = template.content.cloneNode(true);
+        let label = clone.querySelector('label')
+        label.textContent = 'Register Proctor'
+        let a = clone.querySelector('a')
+        a.addEventListener('click', async () => {
+          await UserController.registerProctor(userID)
+          window.location.reload()
+        })
+        body.appendChild(clone);
+      }
+
+      let examList = [];
+      if (currUser.role == "administrative department") {
+        examList = await ExamController.getAllExam();
+      } else if (currUser.role == "student") {
+        examList = await ExamController.getAllExamOfStudent(userID);
+      } else if (currUser.role == "lecturer" || currUser.role == 'proctor') {
+        examList = await ExamController.getAllExamOfProctor(userID)
+      }
+      console.log(examList)
+      if (examList) {
+        examList.forEach(async (e) => {
+          let currClass = await ClassController.getClass(e.classID);
+          let currCourse = await CourseController.getCourse(
+            currClass.courseID.id
+          );
+          let body = document.querySelector("#exam-body");
+          let template = document.querySelector("#class-card-template");
+
+          let clone = template.content.cloneNode(true);
+          let examScheduleStart = clone.querySelector("#exam-schedule-start");
+          let examScheduleEnd = clone.querySelector("#exam-schedule-end");
+          let classCode = clone.querySelector("#class-code");
+          let courseName = clone.querySelector("#class-course-name");
+
+          classCode.textContent = currClass.classCode + ' - ' + capitalizeFirstLetter(e.type) + ' Exam';
+          courseName.textContent = currCourse.name;
+          examScheduleStart.textContent = `Start: ${dateTimeToString(e.start)}`
+          examScheduleEnd.textContent = `End: ${dateTimeToString(e.end)}`
+          
+          let proctorBody = clone.querySelector('#exam-proctor-body')
+          let buttonTemplate = document.getElementById('exam-proctor-btn-template')
+          let examProctorTemplate = document.getElementById('exam-proctor-template')
+          
+          if(currUser.role == 'administrative department')
+          {
+            if(e.proctorID)
+            {
+              let cloneProctorList = examProctorTemplate.content.cloneNode(true)
+              let currProctor = await UserController.getUser(e.proctorID)
+              let proctorName = cloneProctorList.querySelector('p')
+              proctorName.textContent = currProctor.lecturerID + ' - ' + currProctor.name
+              proctorBody.appendChild(cloneProctorList)
+            }
+            else
+            {
+              let cloneAssignProctor = buttonTemplate.content.cloneNode(true)
+              let assignProctorBtn = cloneAssignProctor.querySelector('a')
+              assignProctorBtn.href = `./assignExamProctor.html?exam_id=${e.examID}`
+              proctorBody.appendChild(cloneAssignProctor)
+            }
+          }
+          else if(new Date(e.start.toDate()) <= new Date() && (currUser.role == 'proctor' || currUser.isProctor))
+          {
+              let cloneReportCheat = buttonTemplate.content.cloneNode(true)
+              console.log(cloneReportCheat)
+              let reportCheatBtn = cloneReportCheat.querySelector('a')
+              reportCheatBtn.href = `./reportCheating.html?exam_id=${e.examID}`
+              reportCheatBtn.textContent = 'Report Cheating'
+              proctorBody.appendChild(cloneReportCheat)
+          }
+
+          body.appendChild(clone);
+        });
+      }
+    };
+  </script>
+</html>

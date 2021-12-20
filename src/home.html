@@ -49,11 +49,6 @@
 
       <nav id="navbar" class="navbar">
         <ul id="navbar-list">
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -127,25 +122,30 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/home.js"></script>
+  <!-- <script src="renderer.js"></script> -->
 
 </body>
-  <script type="module">
+
+<script type="module">
     import {UserController} from './assets/js/controller/UserController.js'
+    import {NotificationController} from './assets/js/controller/NotificationController.js'
+    import {initializeNavbar} from './assets/js/navbar.js'
+    import { createNotification } from './renderer.js'
 
     window.onload = async () => {
+
       let currUserID = localStorage.getItem('user_id')
+      let notifList = await NotificationController.checkNotif(currUserID)
       let currUser = await UserController.getUser(currUserID)
-      let scoreRole = ['lecturer', 'student', 'scoring department']
-      if(scoreRole.indexOf(currUser.role) >= 0)
+      initializeNavbar(currUser.role)
+      
+      if(notifList)
       {
-        let navTemplate = document.getElementById('nav-item-template')
-        let navBody = document.getElementById('navbar-list')
-        let navClone = navTemplate.content.cloneNode(true)
-        let navA = navClone.querySelector('a')
-        navA.href = `./score.html`
-        navA.textContent = 'Score'
-        navBody.appendChild(navClone)
-      } 
+        notifList.map((notif) => {
+          createNotification(notif.title, notif.content, notif.forumID)
+        })
+      }
+
 
       let body = document.querySelector('#user-card-fetch')
       let template = document.querySelector('#user-card-template')

@@ -23,4 +23,14 @@ export class UserController {
     return await User.getAllUserByRole(role)
   }
 
+  static async getAllProctors()
+  {
+    return await User.getAllProctors()
+  }
+
+  static async registerProctor(userID)
+  {
+    return await User.registerProctor(userID)
+  }
+
 }

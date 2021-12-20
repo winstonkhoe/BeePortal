@@ -49,15 +49,13 @@
       </a>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+        <ul id='navbar-list'>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
 
     </div>
   </header><!-- End Header -->
@@ -150,6 +148,8 @@
     import { ClassController } from './assets/js/controller/ClassController.js'
     import { ForumController } from './assets/js/controller/ForumController.js'
     import { getMultipleSelectValues } from './assets/js/utils.js'
+    import {initializeNavbar} from './assets/js/navbar.js'
+    import { UserController } from "./assets/js/controller/UserController.js";
 
     const courseSelectFP = document.getElementById('course-select')
     const classSelectFP = document.getElementById('class-select')
@@ -161,8 +161,10 @@
 
     window.onload = async () => {
 
-        let userID = localStorage.getItem('user_id')
-        let courseList = await CourseController.getUniqueCourses(userID)
+        let currUserID = localStorage.getItem('user_id')
+        let currUser = await UserController.getUser(currUserID)
+        initializeNavbar(currUser.role)
+        let courseList = await CourseController.getUniqueCourses(currUserID)
 
         courseList.forEach((course) => {
             let opt = document.createElement('option');
@@ -192,20 +194,17 @@
             let message = ""
             let classList = []
             classList = getMultipleSelectValues(classSelectFP)
-            console.log(classList)
-            if(courseSelectFP.value == "" || classList.length == 0 || forumTitle.value == "" || forumContent.value == "")
+                        if(courseSelectFP.value == "" || classList.length == 0 || forumTitle.value == "" || forumContent.value == "")
             {
                 message = "Fields cannot be empty, and options should be picked"
             }
             errorMessage.textContent = message
             if(message == "")
             {
-                
-                let userID = localStorage.getItem('user_id')
                 classList = getMultipleSelectValues(classSelectFP)
                 classList.map( async (c) => {
                     console.log(c)
-                    let success = await ForumController.insertForum(c, forumTitle.value, forumContent.value, userID, forumPrivacy.checked)
+                    let success = await ForumController.insertForum(c, forumTitle.value, forumContent.value, currUserID, forumPrivacy.checked)
                     // if(success == true)
                     //     console.log("Insert is Successful")
                     // else

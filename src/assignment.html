@@ -78,15 +78,13 @@
 
         <nav id="navbar" class="navbar">
           <ul id=navbar-list>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
       </div>
     </header>
     <!-- End Header -->
@@ -266,7 +264,8 @@
   <script type="module">
     import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
     import { UserController } from "./assets/js/controller/UserController.js";
-    
+    import {initializeNavbar} from './assets/js/navbar.js'
+
     var dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
     var timeOptions = { timeZone: 'Asia/Jakarta', timeZoneName: 'short', hour: '2-digit', minute:'2-digit' };
     
@@ -275,6 +274,8 @@
       let classID = urlQuery.get("class_id");
       let userID = localStorage.getItem("user_id");
       let currUser = await UserController.getUser(userID)
+      initializeNavbar(currUser.role)
+
       let assignments = await AssignmentController.getAllClassAssignmentSorted(classID)
       
       console.log(currUser)

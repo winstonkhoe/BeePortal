@@ -73,16 +73,14 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          <ul id="navbar-list">
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
       </div>
     </header>
     <!-- End Header -->
@@ -127,8 +125,8 @@
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <!-- <a href="#" class="card-link">Card link</a> -->
+                    <!-- <a href="#" class="card-link">Another link</a> -->
                   </div>
                 </div>
               </template>
@@ -168,8 +166,12 @@
   <script type="module">
     import { ForumController } from "./assets/js/controller/ForumController.js";
     import { UserController } from "./assets/js/controller/UserController.js";
+    import {initializeNavbar} from './assets/js/navbar.js'
 
     window.onload = async () => {
+      let currUserID = localStorage.getItem('user_id')
+      let currUser = await UserController.getUser(currUserID)
+      initializeNavbar(currUser.role)
 
       let urlQuery = new URLSearchParams(window.location.search);
       let classID = urlQuery.get("class_id");

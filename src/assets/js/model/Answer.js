@@ -145,10 +145,6 @@ export class Answer {
     return answer.length > 0 ? answer[0] : null
   }
 
-  async updateAssignment() {}
-
-  async removeForum() {}
-
   static async getAnswer(answerID) {
     let data = await getDoc(
       doc(
@@ -160,31 +156,31 @@ export class Answer {
     return data.data();
   }
 
-  static async getAllClassIndividualAssignments(classID) {
-    const queryGetAllClassIndividualAssignments = query(
-      collection(BeeDatabase.getDatabase(), this._CollectionName),
-      where("classID", "==", classID),
-      where("group", "==", false)
-    ).withConverter(answerConverter);
-    let datas = await getDocs(queryGetAllClassIndividualAssignments);
-    let assignments = datas.docs.map((d) => {
-      return d.data();
-    });
-    return assignments;
-  }
+  // static async getAllClassIndividualAssignments(classID) {
+  //   const queryGetAllClassIndividualAssignments = query(
+  //     collection(BeeDatabase.getDatabase(), this._CollectionName),
+  //     where("classID", "==", classID),
+  //     where("group", "==", false)
+  //   ).withConverter(answerConverter);
+  //   let datas = await getDocs(queryGetAllClassIndividualAssignments);
+  //   let assignments = datas.docs.map((d) => {
+  //     return d.data();
+  //   });
+  //   return assignments;
+  // }
 
-  static async getAllClassGroupAssignments(classID) {
-    const queryGetAllClassGroupAssignments = query(
-      collection(BeeDatabase.getDatabase(), this._CollectionName),
-      where("classID", "==", classID),
-      where("group", "==", true)
-    ).withConverter(answerConverter);
-    let datas = await getDocs(queryGetAllClassGroupAssignments);
-    let assignments = datas.docs.map((d) => {
-      return d.data();
-    });
-    return assignments;
-  }
+  // static async getAllClassGroupAssignments(classID) {
+  //   const queryGetAllClassGroupAssignments = query(
+  //     collection(BeeDatabase.getDatabase(), this._CollectionName),
+  //     where("classID", "==", classID),
+  //     where("group", "==", true)
+  //   ).withConverter(answerConverter);
+  //   let datas = await getDocs(queryGetAllClassGroupAssignments);
+  //   let assignments = datas.docs.map((d) => {
+  //     return d.data();
+  //   });
+  //   return assignments;
+  // }
 
 }
 

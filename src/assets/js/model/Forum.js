@@ -10,6 +10,7 @@ import {
   getFirestore,
   query,
   where,
+  updateDoc,
   orderBy,
   limit,
   Timestamp,
@@ -21,6 +22,7 @@ import { User } from "./User.js";
 export class Forum {
   static _CollectionName = "Forums";
 
+  
   constructor(forumID, classID, title, content, date, userID, privacy) {
     this.forumID = forumID
     this.classID = classID
@@ -31,28 +33,60 @@ export class Forum {
     this.privacy = privacy
   }
 
+  
+  
   async insertForum() {
     try {
     const docIns = await addDoc(
-      collection(BeeDatabase.getDatabase(), "Forums"),
-      {
-        classID: this.classID,
-        title: this.title,
-        content: this.content,
-        date: serverTimestamp(),
-        userID: this.userID,
-        privacy: this.privacy,
-      })
-    
-    return true;
+    collection(BeeDatabase.getDatabase(), "Forums"),
+    {
+      classID: this.classID,
+      title: this.title,
+      content: this.content,
+      date: serverTimestamp(),
+      userID: this.userID,
+      privacy: this.privacy,
+    })
+    return {
+      forumID: docIns.id,
+      title: this.title,
+      classID: this.classID,
+      content: this.content,
+      userID: this.userID
+    }
+
     } catch (error) {
+      console.log(error)
     return false
     }
   }
 
-  async updateForum() {}
+  static async updateForum(forumID, content) {
+    try {
+      await updateDoc(
+        doc(BeeDatabase.getDatabase(), this._CollectionName, forumID),
+        {
+          content: content,
+        }
+      );
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
 
-  async removeForum() {}
+  static async removeForum(forumID) {
+    try {
+      await deleteDoc(
+        doc(BeeDatabase.getDatabase(), this._CollectionName, forumID),
+      );
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
 
   static async getForum(forumID) {
     let data = await getDoc(
@@ -127,7 +161,6 @@ const forumConverter = {
         d.userID,
         d.privacy
       );
-      console.log(f)
     return f
   },
 };

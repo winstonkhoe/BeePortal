@@ -5,6 +5,7 @@ import {
   addDoc,
   getDocs,
   doc,
+  updateDoc,
   deleteDoc,
   getDoc,
   getFirestore,
@@ -50,9 +51,32 @@ export class ForumDiscussion {
     }
   }
 
-  async updateForum() {}
+  static async updateForumDiscussion(forumDiscussionID, content) {
+    try {
+      await updateDoc(
+        doc(BeeDatabase.getDatabase(), this._CollectionName, forumDiscussionID),
+        {
+          content: content,
+        }
+      );
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
 
-  async removeForum() {}
+  static async removeForumDiscussion(forumDiscussionID) {
+    try {
+      await deleteDoc(
+        doc(BeeDatabase.getDatabase(), this._CollectionName, forumDiscussionID),
+      );
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
 
   static async getForumDiscussion(forumDiscussionID) {
     let data = await getDoc(

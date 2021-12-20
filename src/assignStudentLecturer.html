@@ -49,15 +49,13 @@
       </a>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+        <ul id='navbar-list'>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
 
     </div>
   </header><!-- End Header -->
@@ -140,6 +138,7 @@
     import { ForumController } from './assets/js/controller/ForumController.js'
     import { ScheduleController } from './assets/js/controller/ScheduleController.js'
     import { getMultipleSelectValues } from './assets/js/utils.js'
+    import {initializeNavbar} from './assets/js/navbar.js'
 
     const lecturerSelectFP = document.getElementById('lecturer-select')
     const studentSelectFP = document.getElementById('student-select')
@@ -148,6 +147,10 @@
     const errorMessage = document.getElementById('error-message')
 
     window.onload = async () => {
+      let currUserID = localStorage.getItem('user_id')
+      let currUser = await UserController.getUser(currUserID)
+      initializeNavbar(currUser.role)
+
       const urlQuery = new URLSearchParams(window.location.search);
       const classID = urlQuery.get("class_id");
       let currClass = await ClassController.getClass(classID)

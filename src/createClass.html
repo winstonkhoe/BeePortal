@@ -49,15 +49,13 @@
       </a>
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-          <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+        <ul id='navbar-list'>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
 
     </div>
   </header><!-- End Header -->
@@ -150,11 +148,13 @@
 </body>
 <script type="module">
     // FP -> Fetch Place
+    import { UserController } from './assets/js/controller/UserController.js'
     import { CourseController } from './assets/js/controller/CourseController.js'
     import { ClassController } from './assets/js/controller/ClassController.js'
     import { ForumController } from './assets/js/controller/ForumController.js'
     import { ScheduleController } from './assets/js/controller/ScheduleController.js'
     import { getMultipleSelectValues } from './assets/js/utils.js'
+    import {initializeNavbar} from './assets/js/navbar.js'
 
     const courseSelectFP = document.getElementById('course-select')
     const classCodeTxt = document.getElementById('class-code')
@@ -164,6 +164,9 @@
     const errorMessage = document.getElementById('error-message')
 
     window.onload = async () => {
+      let currUserID = localStorage.getItem('user_id')
+      let currUser = await UserController.getUser(currUserID)
+      initializeNavbar(currUser.role)
 
         let userID = localStorage.getItem('user_id')
         let courseList = await CourseController.getAllCourses()

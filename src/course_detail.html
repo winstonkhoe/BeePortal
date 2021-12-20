@@ -79,16 +79,14 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          <ul id="navbar-list">
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
       </div>
     </header>
     <!-- End Header -->
@@ -534,6 +532,7 @@
     import { UserController } from "./assets/js/controller/UserController.js";
     import { AssignmentController } from "./assets/js/controller/AssignmentController.js";
     import { AnswerController } from "./assets/js/controller/AnswerController.js";
+    import {initializeNavbar} from './assets/js/navbar.js'
 
     const userID = localStorage.getItem("user_id");
 
@@ -541,6 +540,7 @@
       const urlQuery = new URLSearchParams(window.location.search);
       const classID = urlQuery.get("class_id");
       const currUser = await UserController.getUser(userID)
+      initializeNavbar(currUser.role)
       if(currUser.role == 'administrative department')
       {
         const assignBtn = document.getElementById('assign-button-template')

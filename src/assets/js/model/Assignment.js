@@ -34,13 +34,17 @@ export class Assignment {
 
   async insertAssignment() {
     try {
+      console.log(new Date(this.submissionDate))
+      console.log(new Date(this.submissionDate).getTime())
+      console.log(new Date(this.submissionDate).getTime()/1000)
+      console.log(new Timestamp(new Date(this.submissionDate).getTime()/1000, 0))
       const docIns = await addDoc(
         collection(BeeDatabase.getDatabase(), "Assignments"),
         {
           classID: this.classID,
           title: this.title,
           content: this.content,
-          submissionDate: new Timestamp(new Date(this.submissionDate).getTime()/1000),
+          submissionDate: new Timestamp(new Date(this.submissionDate).getTime()/1000, 0),
           group: this.group,
         }
       );

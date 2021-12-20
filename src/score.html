@@ -72,16 +72,14 @@
         </a>
 
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="class.html">Class</a></li>
-            <!-- <li><a class="nav-link scrollto" href="#services">Forum</a></li> -->
-            <li><a class="nav-link scrollto" href="forum.html">Forum</a></li>
-            <li><a class="nav-link scrollto" href="#">Schedule</a></li>
+          <ul id='navbar-list'>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
+      <template id='nav-item-template'>
+        <li><a class="nav-link scrollto" href=""></a></li>
+      </template>
       </div>
     </header>
     <!-- End Header -->
@@ -182,12 +180,13 @@
     import { ClassController } from "./assets/js/controller/ClassController.js";
     import { CourseController } from "./assets/js/controller/CourseController.js";
     import { UserController } from "./assets/js/controller/UserController.js";
-
+    import {initializeNavbar} from './assets/js/navbar.js'
 
     let userID = localStorage.getItem("user_id");
 
     window.onload = async () => {
       let currUser = await UserController.getUser(userID)
+      initializeNavbar(currUser.role)
       if(currUser.role == 'administrative department')
       {
         let body = document.querySelector("#create-class-body")

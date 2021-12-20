@@ -6,4 +6,10 @@ export class SyllabusController{
         let syllabus = await Syllabus.getSyllabus(syllabusID)
         return syllabus
     }
+
+    static async insertEmpty()
+    {
+        let syllabus = new Syllabus(null, null, null, null, null)
+        return await syllabus.insertEmpty()
+    }
 }

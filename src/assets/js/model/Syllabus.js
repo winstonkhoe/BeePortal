@@ -13,6 +13,7 @@ export class Syllabus {
        this.outcomes = outcomes
        this.strategies = strategies
        this.textbooks = textbooks
+       this.collectionName = "Syllabuses"
     }
 
     async insertSyllabus()
@@ -28,6 +29,17 @@ export class Syllabus {
             });
             return true
         } catch (error) {
+            return false
+        }
+    }
+
+    async insertEmpty()
+    {
+        try {
+            const docIns = await addDoc(collection(BeeDatabase.getDatabase(), this.collectionName), {});
+            return docIns.id
+        } catch (error) {
+            console.log(error)
             return false
         }
     }

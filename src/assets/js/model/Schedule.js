@@ -30,20 +30,10 @@ export class Schedule {
             return false
         }
     }
-    
-    async updateSchedule()
-    {
-
-    }
-
-    async removeSchedule()
-    {
-
-    }
 
     static async getSchedule(scheduleID)
     {
-        const data = await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, scheduleID).withConverter(scheduleConverter))
+        const data = await getDoc(doc(BeeDatabase.getDatabase(), this._CollectionName, scheduleID.id).withConverter(scheduleConverter))
         return data.data()
     }
 
@@ -61,41 +51,6 @@ export class Schedule {
         return scheduleList
     }
 
-    static async getAllLecturerClass(lecturerID)
-    {
-        const queryGetAllLecturerClass = query(collection(BeeDatabase.getDatabase(), this._CollectionName), where("lecturerID", "==", doc(BeeDatabase.getDatabase(), "Users", lecturerID)));
-        let datas = await getDocs(queryGetAllLecturerClass)
-        let modelList = []
-        datas.forEach((d) => {
-            modelList.push(this.convertToModel(d))
-        })
-        return modelList
-    }
-
-    static async getUniqueCourses(userID)
-    {
-        let user = await User.getUser(userID)
-        let classList
-        if(user.role == 'student')
-            classList = await Class.getAllStudentClass(userID)
-        else if(user.role == 'lecturer')
-            classList = await Class.getAllLecturerClass(userID)
-
-        let uniqueCourseList = []
-        uniqueCourseList = await Promise.all (classList.map(async c => {
-            let course = await this.getCourse(c.courseID.id)
-            if(uniqueCourseList.indexOf(course) === -1) {
-                return course
-            }
-        }))
-        return uniqueCourseList
-    }
-
-    static convertToModel(data)
-    {
-        let modelData = data.data()
-        return new Course(data.id, modelData.name, modelData.syllabusID, modelData.credits)
-    }
 }
 
 const scheduleConverter = {
